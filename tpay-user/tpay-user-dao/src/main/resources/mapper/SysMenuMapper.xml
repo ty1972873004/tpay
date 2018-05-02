@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tpay.user.mapper.SysMenuMapper">
+  <resultMap id="BaseResultMap" type="com.tpay.user.model.SysMenu">
+    <id column="ID_" jdbcType="BIGINT" property="id" />
+    <result column="PARENT_ID" jdbcType="BIGINT" property="parentId" />
+    <result column="MENU_NAME" jdbcType="VARCHAR" property="menuName" />
+    <result column="MENU_TYPE" jdbcType="VARCHAR" property="menuType" />
+    <result column="MENU_KEY" jdbcType="VARCHAR" property="menuKey" />
+    <result column="REQUEST_" jdbcType="VARCHAR" property="request" />
+    <result column="ICON_" jdbcType="VARCHAR" property="icon" />
+    <result column="IS_HIDE" jdbcType="VARCHAR" property="isHide" />
+    <result column="SORT_" jdbcType="VARCHAR" property="sort" />
+    <result column="ENABLE_" jdbcType="INTEGER" property="enable" />
+    <result column="REMARK_" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_BY" jdbcType="BIGINT" property="createBy" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_BY" jdbcType="BIGINT" property="updateBy" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+
+  </resultMap>
+  
+  <!-- 基本列 -->
+  <sql id="Base_Column_List">
+    ID_,PARENT_ID,MENU_NAME,MENU_TYPE,MENU_KEY,REQUEST_,ICON_,IS_HIDE,SORT_,ENABLE_,REMARK_,CREATE_BY,CREATE_TIME,UPDATE_BY,UPDATE_TIME
+  </sql>
+  
+  <!-- 单个插入 -->
+  <insert id="insert" parameterType="com.tpay.user.model.SysMenu" useGeneratedKeys="true" keyProperty="id">
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="menuName != null">
+        MENU_NAME,
+      </if>
+      <if test="menuType != null">
+        MENU_TYPE,
+      </if>
+      <if test="menuKey != null">
+        MENU_KEY,
+      </if>
+      <if test="request != null">
+        REQUEST_,
+      </if>
+      <if test="icon != null">
+        ICON_,
+      </if>
+      <if test="isHide != null">
+        IS_HIDE,
+      </if>
+      <if test="sort != null">
+        SORT_,
+      </if>
+      <if test="enable != null">
+        ENABLE_,
+      </if>
+      <if test="remark != null">
+        REMARK_,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuType != null">
+        #{menuType,jdbcType=VARCHAR},
+      </if>
+      <if test="menuKey != null">
+        #{menuKey,jdbcType=VARCHAR},
+      </if>
+      <if test="request != null">
+        #{request,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="isHide != null">
+        #{isHide,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+
+    </trim>
+  </insert>
+  
+  <!-- 批量新增 -->
+  <insert id="insertBatch" parameterType="java.util.List">
+    INSERT INTO sys_menu
+    (ID_,PARENT_ID,MENU_NAME,MENU_TYPE,MENU_KEY,REQUEST_,ICON_,IS_HIDE,SORT_,ENABLE_,REMARK_,CREATE_BY,CREATE_TIME,UPDATE_BY)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.id,jdbcType=BIGINT},#{item.parentId,jdbcType=BIGINT},#{item.menuName,jdbcType=VARCHAR},#{item.menuType,jdbcType=VARCHAR},#{item.menuKey,jdbcType=VARCHAR},#{item.request,jdbcType=VARCHAR},#{item.icon,jdbcType=VARCHAR},#{item.isHide,jdbcType=VARCHAR},#{item.sort,jdbcType=VARCHAR},#{item.enable,jdbcType=INTEGER},#{item.remark,jdbcType=VARCHAR},#{item.createBy,jdbcType=BIGINT},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateBy,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  
+  <!-- 单个更新 -->
+  <update id="update" parameterType="com.tpay.user.model.SysMenu">
+    update sys_menu
+    <set>
+      <if test="parentId != null">
+        PARENT_ID=#{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="menuName != null">
+        MENU_NAME=#{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuType != null">
+        MENU_TYPE=#{menuType,jdbcType=VARCHAR},
+      </if>
+      <if test="menuKey != null">
+        MENU_KEY=#{menuKey,jdbcType=VARCHAR},
+      </if>
+      <if test="request != null">
+        REQUEST_=#{request,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        ICON_=#{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="isHide != null">
+        IS_HIDE=#{isHide,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        SORT_=#{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null">
+        ENABLE_=#{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK_=#{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY=#{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME=#{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY=#{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+      </if>
+
+    </set>
+    where id_ = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 批量更新 -->
+  <update id="updateBatch" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+        UPDATE sys_menu
+        <set>
+        <if test="item.parentId != null">
+          PARENT_ID=#{item.parentId,jdbcType=BIGINT},
+        </if>
+        <if test="item.menuName != null">
+          MENU_NAME=#{item.menuName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.menuType != null">
+          MENU_TYPE=#{item.menuType,jdbcType=VARCHAR},
+        </if>
+        <if test="item.menuKey != null">
+          MENU_KEY=#{item.menuKey,jdbcType=VARCHAR},
+        </if>
+        <if test="item.request != null">
+          REQUEST_=#{item.request,jdbcType=VARCHAR},
+        </if>
+        <if test="item.icon != null">
+          ICON_=#{item.icon,jdbcType=VARCHAR},
+        </if>
+        <if test="item.isHide != null">
+          IS_HIDE=#{item.isHide,jdbcType=VARCHAR},
+        </if>
+        <if test="item.sort != null">
+          SORT_=#{item.sort,jdbcType=VARCHAR},
+        </if>
+        <if test="item.enable != null">
+          ENABLE_=#{item.enable,jdbcType=INTEGER},
+        </if>
+        <if test="item.remark != null">
+          REMARK_=#{item.remark,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createBy != null">
+          CREATE_BY=#{item.createBy,jdbcType=BIGINT},
+        </if>
+        <if test="item.createTime != null">
+          CREATE_TIME=#{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateBy != null">
+          UPDATE_BY=#{item.updateBy,jdbcType=BIGINT},
+        </if>
+        <if test="item.updateTime != null">
+          UPDATE_TIME=#{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+
+        </set>
+        WHERE id_ = #{item.id,jdbcType=BIGINT}
+    </foreach> 
+  </update>
+
+  <update id="updateByParam" parameterType="java.util.Map">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update  sys_menu
+            <set>
+        <if test="parentId != null">
+        PARENT_ID=#{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="menuName != null">
+        MENU_NAME=#{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuType != null">
+        MENU_TYPE=#{menuType,jdbcType=VARCHAR},
+      </if>
+      <if test="menuKey != null">
+        MENU_KEY=#{menuKey,jdbcType=VARCHAR},
+      </if>
+      <if test="request != null">
+        REQUEST_=#{request,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        ICON_=#{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="isHide != null">
+        IS_HIDE=#{isHide,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        SORT_=#{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null">
+        ENABLE_=#{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK_=#{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY=#{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME=#{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY=#{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+      </if>
+
+            </set>
+            where id_ = #{id,jdbcType=BIGINT}
+        </foreach>
+  </update>
+
+  <!-- 删除 -->
+  <update id="deleteByPk" parameterType="com.tpay.user.model.SysMenu" >
+      update sys_menu
+      set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+      where id_ = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="deleteByParam" parameterType="com.tpay.user.model.SysMenu" >
+        update sys_menu
+        set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+      <where>
+          <if test="parentId != null">
+              and  PARENT_ID=#{parentId,jdbcType=BIGINT}
+          </if>
+          <if test="menuName != null">
+              and MENU_NAME=#{menuName,jdbcType=VARCHAR}
+          </if>
+          <if test="menuType != null">
+              and MENU_TYPE=#{menuType,jdbcType=VARCHAR}
+          </if>
+          <if test="menuKey != null">
+              and MENU_KEY=#{menuKey,jdbcType=VARCHAR}
+          </if>
+          <if test="request != null">
+              and REQUEST_=#{request,jdbcType=VARCHAR}
+          </if>
+          <if test="icon != null">
+              and ICON_=#{icon,jdbcType=VARCHAR}
+          </if>
+          <if test="isHide != null">
+              and IS_HIDE=#{isHide,jdbcType=VARCHAR}
+          </if>
+          <if test="sort != null">
+              and SORT_=#{sort,jdbcType=VARCHAR}
+          </if>
+          <if test="enable != null">
+              and ENABLE_=#{enable,jdbcType=INTEGER}
+          </if>
+          <if test="remark != null">
+              and REMARK_=#{remark,jdbcType=VARCHAR}
+          </if>
+          <if test="createBy != null">
+              and CREATE_BY=#{createBy,jdbcType=BIGINT}
+          </if>
+          <if test="createTime != null">
+              and CREATE_TIME=#{createTime,jdbcType=TIMESTAMP}
+          </if>
+          <if test="updateBy != null">
+              and  UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+          </if>
+          <if test="updateTime != null">
+              and  UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+          </if>
+      </where>
+  </update>
+  
+  <!-- 批量删除 -->
+  <update id="deleteBatch" parameterType="java.util.List" >
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+        update sys_menu
+        set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+        where id_ = #{item.id,jdbcType=BIGINT}
+    </foreach> 
+  </update>
+
+
+  <!-- COUNT -->
+  <select id="count" resultType="java.lang.Integer">
+        SELECT count(*) FROM sys_menu where enable_ = 1
+  </select>
+
+  <select id="countByParam" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) from sys_menu
+        <where>
+           <if test="parentId != null">
+            and  PARENT_ID=#{parentId,jdbcType=BIGINT}
+          </if>
+          <if test="menuName != null">
+            and MENU_NAME=#{menuName,jdbcType=VARCHAR}
+          </if>
+          <if test="menuType != null">
+            and MENU_TYPE=#{menuType,jdbcType=VARCHAR}
+          </if>
+          <if test="menuKey != null">
+            and MENU_KEY=#{menuKey,jdbcType=VARCHAR}
+          </if>
+          <if test="request != null">
+              and REQUEST_=#{request,jdbcType=VARCHAR}
+          </if>
+          <if test="icon != null">
+              and ICON_=#{icon,jdbcType=VARCHAR}
+          </if>
+          <if test="isHide != null">
+              and IS_HIDE=#{isHide,jdbcType=VARCHAR}
+          </if>
+          <if test="sort != null">
+              and SORT_=#{sort,jdbcType=VARCHAR}
+          </if>
+          <if test="enable != null">
+              and ENABLE_=#{enable,jdbcType=INTEGER}
+          </if>
+          <if test="remark != null">
+              and REMARK_=#{remark,jdbcType=VARCHAR}
+          </if>
+          <if test="createBy != null">
+              and CREATE_BY=#{createBy,jdbcType=BIGINT}
+          </if>
+          <if test="createTime != null">
+              and CREATE_TIME=#{createTime,jdbcType=TIMESTAMP}
+          </if>
+          <if test="updateBy != null">
+              and  UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+          </if>
+          <if test="updateTime != null">
+              and  UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+          </if>
+        </where>
+  </select>
+
+  <!-- 单个查询 -->
+  <select id="selectByPk" parameterType="java.lang.Long" resultType="com.tpay.user.model.SysMenu">
+        select <include refid="Base_Column_List" /> from sys_menu
+        where id_ = #{item.id,jdbcType=BIGINT} AND enable_ = 1
+  </select>
+
+  <!-- 查询所有 -->
+  <select id="selectAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from sys_menu where enable_ = 1
+  </select>
+
+
+  <select id="selectByParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from sys_menu
+        <where>
+            <if test="parentId != null">
+                and  PARENT_ID=#{parentId,jdbcType=BIGINT}
+            </if>
+            <if test="menuName != null">
+                and MENU_NAME=#{menuName,jdbcType=VARCHAR}
+            </if>
+            <if test="menuType != null">
+                and MENU_TYPE=#{menuType,jdbcType=VARCHAR}
+            </if>
+            <if test="menuKey != null">
+                and MENU_KEY=#{menuKey,jdbcType=VARCHAR}
+            </if>
+            <if test="request != null">
+                and REQUEST_=#{request,jdbcType=VARCHAR}
+            </if>
+            <if test="icon != null">
+                and ICON_=#{icon,jdbcType=VARCHAR}
+            </if>
+            <if test="isHide != null">
+                and IS_HIDE=#{isHide,jdbcType=VARCHAR}
+            </if>
+            <if test="sort != null">
+                and SORT_=#{sort,jdbcType=VARCHAR}
+            </if>
+            <if test="enable != null">
+                and ENABLE_=#{enable,jdbcType=INTEGER}
+            </if>
+            <if test="remark != null">
+                and REMARK_=#{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="createBy != null">
+                and CREATE_BY=#{createBy,jdbcType=BIGINT}
+            </if>
+            <if test="createTime != null">
+                and CREATE_TIME=#{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateBy != null">
+                and  UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+            </if>
+            <if test="updateTime != null">
+                and  UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        <if test="orderColumn != null">
+            order by  ${orderColumn}
+            <if test="orderType != null">
+               ${orderType}
+            </if>
+        </if>
+  </select>
+
+    <select id="selectIdPage" resultType="java.lang.Long">
+        select id_ from sys_menu
+        <where>
+            <if test="parentId != null">
+                and  PARENT_ID=#{parentId,jdbcType=BIGINT}
+            </if>
+            <if test="menuName != null">
+                and MENU_NAME=#{menuName,jdbcType=VARCHAR}
+            </if>
+            <if test="menuType != null">
+                and MENU_TYPE=#{menuType,jdbcType=VARCHAR}
+            </if>
+            <if test="menuKey != null">
+                and MENU_KEY=#{menuKey,jdbcType=VARCHAR}
+            </if>
+            <if test="request != null">
+                and REQUEST_=#{request,jdbcType=VARCHAR}
+            </if>
+            <if test="icon != null">
+                and ICON_=#{icon,jdbcType=VARCHAR}
+            </if>
+            <if test="isHide != null">
+                and IS_HIDE=#{isHide,jdbcType=VARCHAR}
+            </if>
+            <if test="sort != null">
+                and SORT_=#{sort,jdbcType=VARCHAR}
+            </if>
+
+            <if test="remark != null">
+                and REMARK_=#{remark,jdbcType=VARCHAR}
+            </if>
+
+        </where>
+    </select>
+
+    <select id="selectMenuByUserId" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        concat(id_) AS id,
+        menu_name AS menuName,
+        menu_type AS menuType,
+        concat(parent_id) AS parentId,
+        menu_key AS menuKey,
+        request_ AS request,
+        icon_ AS icon,
+        is_hide AS isHide,
+        sort_ AS sort
+        FROM
+        sys_menu
+        <if test="userId != null and userId != '' and userId != 0">
+            WHERE
+            id_ IN (
+            SELECT
+            menu_id
+            FROM
+            sys_menu_user
+            WHERE
+            user_id = #{userId}
+            )
+        </if>
+    </select>
+</mapper>

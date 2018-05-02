@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tpay.user.mapper.SysUserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.tpay.user.model.SysUserRole">
+    <id column="ID_" jdbcType="BIGINT" property="id" />
+    <result column="USER_ID" jdbcType="BIGINT" property="userId" />
+    <result column="ROLE_ID" jdbcType="BIGINT" property="roleId" />
+    <result column="ENABLE_" jdbcType="INTEGER" property="enable" />
+    <result column="REMARK_" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_BY" jdbcType="BIGINT" property="createBy" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_BY" jdbcType="BIGINT" property="updateBy" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+
+  </resultMap>
+  
+  <!-- 基本列 -->
+  <sql id="Base_Column_List">
+    ID_,USER_ID,ROLE_ID,ENABLE_,REMARK_,CREATE_BY,CREATE_TIME,UPDATE_BY,UPDATE_TIME
+  </sql>
+  
+  <!-- 单个插入 -->
+  <insert id="insert" parameterType="com.tpay.user.model.SysUserRole" useGeneratedKeys="true" keyProperty="id">
+    insert into sys_user_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="enable != null">
+        ENABLE_,
+      </if>
+      <if test="remark != null">
+        REMARK_,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+
+    </trim>
+  </insert>
+  
+  <!-- 批量新增 -->
+  <insert id="insertBatch" parameterType="java.util.List">
+    INSERT INTO sys_user_role
+    (ID_,USER_ID,ROLE_ID,ENABLE_,REMARK_,CREATE_BY,CREATE_TIME,UPDATE_BY)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.id,jdbcType=BIGINT},#{item.userId,jdbcType=BIGINT},#{item.roleId,jdbcType=BIGINT},#{item.enable,jdbcType=INTEGER},#{item.remark,jdbcType=VARCHAR},#{item.createBy,jdbcType=BIGINT},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateBy,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  
+  <!-- 单个更新 -->
+  <update id="update" parameterType="com.tpay.user.model.SysUserRole">
+    update sys_user_role
+    <set>
+      <if test="userId != null">
+        USER_ID=#{userId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        ROLE_ID=#{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="enable != null">
+        ENABLE_=#{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK_=#{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY=#{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME=#{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY=#{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+      </if>
+
+    </set>
+    where id_ = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 批量更新 -->
+  <update id="updateBatch" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+        UPDATE sys_user_role
+        <set>
+        <if test="item.userId != null">
+          USER_ID=#{item.userId,jdbcType=BIGINT},
+        </if>
+        <if test="item.roleId != null">
+          ROLE_ID=#{item.roleId,jdbcType=BIGINT},
+        </if>
+        <if test="item.enable != null">
+          ENABLE_=#{item.enable,jdbcType=INTEGER},
+        </if>
+        <if test="item.remark != null">
+          REMARK_=#{item.remark,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createBy != null">
+          CREATE_BY=#{item.createBy,jdbcType=BIGINT},
+        </if>
+        <if test="item.createTime != null">
+          CREATE_TIME=#{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateBy != null">
+          UPDATE_BY=#{item.updateBy,jdbcType=BIGINT},
+        </if>
+        <if test="item.updateTime != null">
+          UPDATE_TIME=#{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+
+        </set>
+        WHERE id_ = #{item.id,jdbcType=BIGINT}
+    </foreach> 
+  </update>
+
+  <update id="updateByParam" parameterType="java.util.Map">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update  sys_user_role
+            <set>
+        <if test="userId != null">
+        USER_ID=#{userId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        ROLE_ID=#{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="enable != null">
+        ENABLE_=#{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK_=#{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY=#{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME=#{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY=#{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+      </if>
+
+            </set>
+            where id_ = #{id,jdbcType=BIGINT}
+        </foreach>
+  </update>
+
+  <!-- 删除 -->
+  <update id="deleteByPk" parameterType="com.tpay.user.model.SysUserRole" >
+      update sys_user_role
+      set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+      where id_ = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="deleteByParam" parameterType="com.tpay.user.model.SysUserRole" >
+        update sys_user_role
+        set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+        <where>
+            <if test="userId != null">
+                and USER_ID=#{userId,jdbcType=BIGINT}
+            </if>
+            <if test="roleId != null">
+                and  ROLE_ID=#{roleId,jdbcType=BIGINT}
+            </if>
+        </where>
+  </update>
+  
+  <!-- 批量删除 -->
+  <update id="deleteBatch" parameterType="java.util.List" >
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+        update sys_user_role
+        set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+        where id_ = #{item.id,jdbcType=BIGINT}
+    </foreach> 
+  </update>
+
+
+  <!-- COUNT -->
+  <select id="count" resultType="java.lang.Integer">
+        SELECT count(*) FROM sys_user_role where enable_ = 1
+  </select>
+
+  <select id="countByParam" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) from sys_user_role
+        <where>
+            <if test="userId != null">
+                and USER_ID=#{userId,jdbcType=BIGINT}
+            </if>
+            <if test="roleId != null">
+                and  ROLE_ID=#{roleId,jdbcType=BIGINT}
+            </if>
+            <if test="enable != null">
+                and  ENABLE_=#{enable,jdbcType=INTEGER}
+            </if>
+            <if test="remark != null">
+                and REMARK_=#{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="createBy != null">
+                and CREATE_BY=#{createBy,jdbcType=BIGINT}
+            </if>
+            <if test="createTime != null">
+                and  CREATE_TIME=#{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateBy != null">
+                and  UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+            </if>
+            <if test="updateTime != null">
+                and UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+            </if>
+
+        </where>
+  </select>
+
+  <!-- 单个查询 -->
+  <select id="selectByPk" parameterType="java.lang.Long" resultType="com.tpay.user.model.SysUserRole">
+        select <include refid="Base_Column_List" /> from sys_user_role
+        where id_ = #{item.id,jdbcType=BIGINT} AND enable_ = 1
+  </select>
+
+  <!-- 查询所有 -->
+  <select id="selectAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from sys_user_role where enable_ = 1
+  </select>
+
+
+  <select id="selectByParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from sys_user_role
+        <where>
+            <if test="userId != null">
+                and USER_ID=#{userId,jdbcType=BIGINT}
+            </if>
+            <if test="roleId != null">
+                and  ROLE_ID=#{roleId,jdbcType=BIGINT}
+            </if>
+            <if test="enable != null">
+                and  ENABLE_=#{enable,jdbcType=INTEGER}
+            </if>
+            <if test="remark != null">
+                and REMARK_=#{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="createBy != null">
+                and CREATE_BY=#{createBy,jdbcType=BIGINT}
+            </if>
+            <if test="createTime != null">
+                and  CREATE_TIME=#{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateBy != null">
+                and  UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+            </if>
+            <if test="updateTime != null">
+                and UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        <if test="orderColumn != null">
+            order by ${orderColumn}
+            <if test="orderType != null">
+                ${orderType}
+            </if>
+        </if>
+  </select>
+
+    <select id="selectIdPage" resultType="java.lang.Long">
+        select id_ from sys_user_role
+     <where>
+      <if test="userId != null">
+        and USER_ID=#{userId,jdbcType=BIGINT}
+      </if>
+      <if test="roleId != null">
+        and  ROLE_ID=#{roleId,jdbcType=BIGINT}
+      </if>
+      <if test="enable != null">
+        and  ENABLE_=#{enable,jdbcType=INTEGER}
+      </if>
+      <if test="remark != null">
+        and REMARK_=#{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="createBy != null">
+        and CREATE_BY=#{createBy,jdbcType=BIGINT}
+      </if>
+      <if test="createTime != null">
+        and  CREATE_TIME=#{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateBy != null">
+        and  UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+      </if>
+      <if test="updateTime != null">
+        and UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+      </if>
+     </where>
+    </select>
+</mapper>

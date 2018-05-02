@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tpay.user.mapper.SysUserMapper">
+	<resultMap id="BaseResultMap" type="com.tpay.user.model.SysUser">
+		<id column="ID_" jdbcType="BIGINT" property="id" />
+		<result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+		<result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+		<result column="SALT" jdbcType="VARCHAR" property="salt" />
+		<result column="REAL_NAME" jdbcType="VARCHAR" property="realName" />
+		<result column="AVATAR" jdbcType="VARCHAR" property="avatar" />
+		<result column="REGISTER_TYPE" jdbcType="VARCHAR" property="registerType" />
+		<result column="USER_TYPE" jdbcType="VARCHAR" property="userType" />
+		<result column="PHONE" jdbcType="VARCHAR" property="phone" />
+		<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		<result column="SEX" jdbcType="INTEGER" property="sex" />
+		<result column="LOCKED_" jdbcType="INTEGER" property="locked" />
+		<result column="LOGIN_NUM" jdbcType="INTEGER" property="loginNum" />
+		<result column="LOGIN_TIME" jdbcType="TIMESTAMP" property="loginTime" />
+		<result column="OLD_LOGIN_TIME" jdbcType="TIMESTAMP" property="oldLoginTime" />
+		<result column="LOGIN_IP" jdbcType="VARCHAR" property="loginIp" />
+		<result column="OLD_LOGIN_IP" jdbcType="VARCHAR" property="oldLoginIp" />
+		<result column="STATUS_" jdbcType="VARCHAR" property="status" />
+		<result column="ENABLE_" jdbcType="INTEGER" property="enable" />
+		<result column="REMARK_" jdbcType="VARCHAR" property="remark" />
+		<result column="CREATE_BY" jdbcType="BIGINT" property="createBy" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_BY" jdbcType="BIGINT" property="updateBy" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+
+	</resultMap>
+
+	<!-- 基本列 -->
+	<sql id="Base_Column_List">
+		ID_,USER_NAME,LOGIN_NAME,PASSWORD,SALT,REAL_NAME,AVATAR,REGISTER_TYPE,USER_TYPE,PHONE,EMAIL,SEX,LOCKED_,LOGIN_NUM,LOGIN_TIME,OLD_LOGIN_TIME,LOGIN_IP,OLD_LOGIN_IP,STATUS_,ENABLE_,REMARK_,CREATE_BY,CREATE_TIME,UPDATE_BY,UPDATE_TIME
+	</sql>
+
+	<!-- 单个插入 -->
+	<insert id="insert" parameterType="com.tpay.user.model.SysUser" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID_,
+			</if>
+			<if test="userName != null">
+				USER_NAME,
+			</if>
+			<if test="loginName != null">
+				LOGIN_NAME,
+			</if>
+			<if test="password != null">
+				PASSWORD,
+			</if>
+			<if test="salt != null">
+				SALT,
+			</if>
+			<if test="realName != null">
+				REAL_NAME,
+			</if>
+			<if test="avatar != null">
+				AVATAR,
+			</if>
+			<if test="registerType != null">
+				REGISTER_TYPE,
+			</if>
+			<if test="userType != null">
+				USER_TYPE,
+			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			<if test="email != null">
+				EMAIL,
+			</if>
+			<if test="sex != null">
+				SEX,
+			</if>
+			<if test="locked != null">
+				LOCKED_,
+			</if>
+			<if test="loginNum != null">
+				LOGIN_NUM,
+			</if>
+			<if test="loginTime != null">
+				LOGIN_TIME,
+			</if>
+			<if test="oldLoginTime != null">
+				OLD_LOGIN_TIME,
+			</if>
+			<if test="loginIp != null">
+				LOGIN_IP,
+			</if>
+			<if test="oldLoginIp != null">
+				OLD_LOGIN_IP,
+			</if>
+			<if test="status != null">
+				STATUS_,
+			</if>
+			<if test="enable != null">
+				ENABLE_,
+			</if>
+			<if test="remark != null">
+				REMARK_,
+			</if>
+			<if test="createBy != null">
+				CREATE_BY,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateBy != null">
+				UPDATE_BY,
+			</if>
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="loginName != null">
+				#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				#{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="avatar != null">
+				#{avatar,jdbcType=VARCHAR},
+			</if>
+			<if test="registerType != null">
+				#{registerType,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				#{locked,jdbcType=INTEGER},
+			</if>
+			<if test="loginNum != null">
+				#{loginNum,jdbcType=INTEGER},
+			</if>
+			<if test="loginTime != null">
+				#{loginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="oldLoginTime != null">
+				#{oldLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginIp != null">
+				#{loginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="oldLoginIp != null">
+				#{oldLoginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="enable != null">
+				#{enable,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy,jdbcType=BIGINT},
+			</if>
+
+		</trim>
+	</insert>
+
+	<!-- 批量新增 -->
+	<insert id="insertBatch" parameterType="java.util.List">
+		INSERT INTO sys_user
+		(ID_,USER_NAME,LOGIN_NAME,PASSWORD,SALT,REAL_NAME,AVATAR,REGISTER_TYPE,USER_TYPE,PHONE,EMAIL,SEX,LOCKED_,LOGIN_NUM,LOGIN_TIME,OLD_LOGIN_TIME,LOGIN_IP,OLD_LOGIN_IP,STATUS_,ENABLE_,REMARK_,CREATE_BY,CREATE_TIME,UPDATE_BY)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id,jdbcType=BIGINT},#{item.userName,jdbcType=VARCHAR},#{item.loginName,jdbcType=VARCHAR},#{item.password,jdbcType=VARCHAR},#{item.salt,jdbcType=VARCHAR},#{item.realName,jdbcType=VARCHAR},#{item.avatar,jdbcType=VARCHAR},#{item.registerType,jdbcType=VARCHAR},#{item.userType,jdbcType=VARCHAR},#{item.phone,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},#{item.sex,jdbcType=INTEGER},#{item.locked,jdbcType=INTEGER},#{item.loginNum,jdbcType=INTEGER},#{item.loginTime,jdbcType=TIMESTAMP},#{item.oldLoginTime,jdbcType=TIMESTAMP},#{item.loginIp,jdbcType=VARCHAR},#{item.oldLoginIp,jdbcType=VARCHAR},#{item.status,jdbcType=VARCHAR},#{item.enable,jdbcType=INTEGER},#{item.remark,jdbcType=VARCHAR},#{item.createBy,jdbcType=BIGINT},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateBy,jdbcType=BIGINT})
+		</foreach>
+	</insert>
+
+	<!-- 单个更新 -->
+	<update id="update" parameterType="com.tpay.user.model.SysUser">
+		update sys_user
+		<set>
+			<if test="userName != null">
+				USER_NAME=#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="loginName != null">
+				LOGIN_NAME=#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				PASSWORD=#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				SALT=#{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				REAL_NAME=#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="avatar != null">
+				AVATAR=#{avatar,jdbcType=VARCHAR},
+			</if>
+			<if test="registerType != null">
+				REGISTER_TYPE=#{registerType,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				USER_TYPE=#{userType,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				PHONE=#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				EMAIL=#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				SEX=#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				LOCKED_=#{locked,jdbcType=INTEGER},
+			</if>
+			<if test="loginNum != null">
+				LOGIN_NUM=#{loginNum,jdbcType=INTEGER},
+			</if>
+			<if test="loginTime != null">
+				LOGIN_TIME=#{loginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="oldLoginTime != null">
+				OLD_LOGIN_TIME=#{oldLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginIp != null">
+				LOGIN_IP=#{loginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="oldLoginIp != null">
+				OLD_LOGIN_IP=#{oldLoginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS_=#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="enable != null">
+				ENABLE_=#{enable,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				REMARK_=#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY=#{createBy,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME=#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATE_BY=#{updateBy,jdbcType=BIGINT},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+
+		</set>
+		where id_ = #{id,jdbcType=BIGINT}
+	</update>
+
+	<!-- 批量更新 -->
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE sys_user
+			<set>
+				<if test="item.userName != null">
+					USER_NAME=#{item.userName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.loginName != null">
+					LOGIN_NAME=#{item.loginName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.password != null">
+					PASSWORD=#{item.password,jdbcType=VARCHAR},
+				</if>
+				<if test="item.salt != null">
+					SALT=#{item.salt,jdbcType=VARCHAR},
+				</if>
+				<if test="item.realName != null">
+					REAL_NAME=#{item.realName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.avatar != null">
+					AVATAR=#{item.avatar,jdbcType=VARCHAR},
+				</if>
+				<if test="item.registerType != null">
+					REGISTER_TYPE=#{item.registerType,jdbcType=VARCHAR},
+				</if>
+				<if test="item.userType != null">
+					USER_TYPE=#{item.userType,jdbcType=VARCHAR},
+				</if>
+				<if test="item.phone != null">
+					PHONE=#{item.phone,jdbcType=VARCHAR},
+				</if>
+				<if test="item.email != null">
+					EMAIL=#{item.email,jdbcType=VARCHAR},
+				</if>
+				<if test="item.sex != null">
+					SEX=#{item.sex,jdbcType=INTEGER},
+				</if>
+				<if test="item.locked != null">
+					LOCKED_=#{item.locked,jdbcType=INTEGER},
+				</if>
+				<if test="item.loginNum != null">
+					LOGIN_NUM=#{item.loginNum,jdbcType=INTEGER},
+				</if>
+				<if test="item.loginTime != null">
+					LOGIN_TIME=#{item.loginTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="item.oldLoginTime != null">
+					OLD_LOGIN_TIME=#{item.oldLoginTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="item.loginIp != null">
+					LOGIN_IP=#{item.loginIp,jdbcType=VARCHAR},
+				</if>
+				<if test="item.oldLoginIp != null">
+					OLD_LOGIN_IP=#{item.oldLoginIp,jdbcType=VARCHAR},
+				</if>
+				<if test="item.status != null">
+					STATUS_=#{item.status,jdbcType=VARCHAR},
+				</if>
+				<if test="item.enable != null">
+					ENABLE_=#{item.enable,jdbcType=INTEGER},
+				</if>
+				<if test="item.remark != null">
+					REMARK_=#{item.remark,jdbcType=VARCHAR},
+				</if>
+				<if test="item.createBy != null">
+					CREATE_BY=#{item.createBy,jdbcType=BIGINT},
+				</if>
+				<if test="item.createTime != null">
+					CREATE_TIME=#{item.createTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="item.updateBy != null">
+					UPDATE_BY=#{item.updateBy,jdbcType=BIGINT},
+				</if>
+				<if test="item.updateTime != null">
+					UPDATE_TIME=#{item.updateTime,jdbcType=TIMESTAMP},
+				</if>
+
+			</set>
+			WHERE id_ = #{item.id,jdbcType=BIGINT}
+		</foreach>
+	</update>
+
+	<update id="updateByParam" parameterType="java.util.Map">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			update  sys_user
+			<set>
+				<if test="userName != null">
+					USER_NAME=#{userName,jdbcType=VARCHAR},
+				</if>
+				<if test="loginName != null">
+					LOGIN_NAME=#{loginName,jdbcType=VARCHAR},
+				</if>
+				<if test="password != null">
+					PASSWORD=#{password,jdbcType=VARCHAR},
+				</if>
+				<if test="salt != null">
+					SALT=#{salt,jdbcType=VARCHAR},
+				</if>
+				<if test="realName != null">
+					REAL_NAME=#{realName,jdbcType=VARCHAR},
+				</if>
+				<if test="avatar != null">
+					AVATAR=#{avatar,jdbcType=VARCHAR},
+				</if>
+				<if test="registerType != null">
+					REGISTER_TYPE=#{registerType,jdbcType=VARCHAR},
+				</if>
+				<if test="userType != null">
+					USER_TYPE=#{userType,jdbcType=VARCHAR},
+				</if>
+				<if test="phone != null">
+					PHONE=#{phone,jdbcType=VARCHAR},
+				</if>
+				<if test="email != null">
+					EMAIL=#{email,jdbcType=VARCHAR},
+				</if>
+				<if test="sex != null">
+					SEX=#{sex,jdbcType=INTEGER},
+				</if>
+				<if test="locked != null">
+					LOCKED_=#{locked,jdbcType=INTEGER},
+				</if>
+				<if test="loginNum != null">
+					LOGIN_NUM=#{loginNum,jdbcType=INTEGER},
+				</if>
+				<if test="loginTime != null">
+					LOGIN_TIME=#{loginTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="oldLoginTime != null">
+					OLD_LOGIN_TIME=#{oldLoginTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="loginIp != null">
+					LOGIN_IP=#{loginIp,jdbcType=VARCHAR},
+				</if>
+				<if test="oldLoginIp != null">
+					OLD_LOGIN_IP=#{oldLoginIp,jdbcType=VARCHAR},
+				</if>
+				<if test="status != null">
+					STATUS_=#{status,jdbcType=VARCHAR},
+				</if>
+				<if test="enable != null">
+					ENABLE_=#{enable,jdbcType=INTEGER},
+				</if>
+				<if test="remark != null">
+					REMARK_=#{remark,jdbcType=VARCHAR},
+				</if>
+				<if test="createBy != null">
+					CREATE_BY=#{createBy,jdbcType=BIGINT},
+				</if>
+				<if test="createTime != null">
+					CREATE_TIME=#{createTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="updateBy != null">
+					UPDATE_BY=#{updateBy,jdbcType=BIGINT},
+				</if>
+				<if test="updateTime != null">
+					UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+				</if>
+
+			</set>
+			where id_ = #{id,jdbcType=BIGINT}
+		</foreach>
+	</update>
+
+	<!-- 删除 -->
+	<update id="deleteByPk" parameterType="com.tpay.user.model.SysUser" >
+		update sys_user
+		set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+		where id_ = #{id,jdbcType=BIGINT}
+	</update>
+
+	<update id="deleteByParam" parameterType="java.util.Map" >
+		update sys_user
+		set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+		<where>
+			<if test="userName != null">
+				AND USER_NAME=#{userName,jdbcType=VARCHAR}
+			</if>
+			<if test="loginName != null">
+				AND LOGIN_NAME=#{loginName,jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				AND PASSWORD=#{password,jdbcType=VARCHAR}
+			</if>
+			<if test="salt != null">
+				AND SALT=#{salt,jdbcType=VARCHAR}
+			</if>
+			<if test="realName != null">
+				AND REAL_NAME=#{realName,jdbcType=VARCHAR}
+			</if>
+			<if test="avatar != null">
+				AND AVATAR=#{avatar,jdbcType=VARCHAR}
+			</if>
+			<if test="registerType != null">
+				AND REGISTER_TYPE=#{registerType,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				AND USER_TYPE=#{userType,jdbcType=VARCHAR}
+			</if>
+			<if test="phone != null">
+				AND PHONE=#{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="email != null">
+				AND EMAIL=#{email,jdbcType=VARCHAR}
+			</if>
+			<if test="sex != null">
+				AND SEX=#{sex,jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				AND LOCKED_=#{locked,jdbcType=INTEGER}
+			</if>
+			<if test="loginNum != null">
+				AND LOGIN_NUM=#{loginNum,jdbcType=INTEGER}
+			</if>
+			<if test="loginTime != null">
+				AND LOGIN_TIME=#{loginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="oldLoginTime != null">
+				AND OLD_LOGIN_TIME=#{oldLoginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="loginIp != null">
+				AND LOGIN_IP=#{loginIp,jdbcType=VARCHAR}
+			</if>
+			<if test="oldLoginIp != null">
+				AND OLD_LOGIN_IP=#{oldLoginIp,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				AND STATUS_=#{status,jdbcType=VARCHAR}
+			</if>
+			<if test="enable != null">
+				AND ENABLE_=#{enable,jdbcType=INTEGER}
+			</if>
+			<if test="remark != null">
+				AND REMARK_=#{remark,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</update>
+
+	<!-- 批量删除 -->
+	<update id="deleteBatch" parameterType="java.util.List" >
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			update sys_user
+			set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+			where id_ = #{item.id,jdbcType=BIGINT}
+		</foreach>
+	</update>
+
+
+	<!-- COUNT -->
+	<select id="count" resultType="java.lang.Integer">
+		SELECT count(*) FROM sys_user where enable_ = 1
+	</select>
+
+	<select id="countByParam" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(*) from sys_user
+		<where>
+			<if test="userName != null">
+				AND USER_NAME=#{userName,jdbcType=VARCHAR}
+			</if>
+			<if test="loginName != null">
+				AND LOGIN_NAME=#{loginName,jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				AND PASSWORD=#{password,jdbcType=VARCHAR}
+			</if>
+			<if test="salt != null">
+				AND SALT=#{salt,jdbcType=VARCHAR}
+			</if>
+			<if test="realName != null">
+				AND REAL_NAME=#{realName,jdbcType=VARCHAR}
+			</if>
+			<if test="avatar != null">
+				AND AVATAR=#{avatar,jdbcType=VARCHAR}
+			</if>
+			<if test="registerType != null">
+				AND REGISTER_TYPE=#{registerType,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				AND USER_TYPE=#{userType,jdbcType=VARCHAR}
+			</if>
+			<if test="phone != null">
+				AND PHONE=#{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="email != null">
+				AND EMAIL=#{email,jdbcType=VARCHAR}
+			</if>
+			<if test="sex != null">
+				AND SEX=#{sex,jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				AND LOCKED_=#{locked,jdbcType=INTEGER}
+			</if>
+			<if test="loginNum != null">
+				AND LOGIN_NUM=#{loginNum,jdbcType=INTEGER}
+			</if>
+			<if test="loginTime != null">
+				AND LOGIN_TIME=#{loginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="oldLoginTime != null">
+				AND OLD_LOGIN_TIME=#{oldLoginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="loginIp != null">
+				AND LOGIN_IP=#{loginIp,jdbcType=VARCHAR}
+			</if>
+			<if test="oldLoginIp != null">
+				AND OLD_LOGIN_IP=#{oldLoginIp,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				AND STATUS_=#{status,jdbcType=VARCHAR}
+			</if>
+			<if test="enable != null">
+				AND ENABLE_=#{enable,jdbcType=INTEGER}
+			</if>
+			<if test="remark != null">
+				AND REMARK_=#{remark,jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				AND CREATE_BY=#{createBy,jdbcType=BIGINT}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME=#{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				AND UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+			</if>
+			<if test="updateTime != null">
+				AND UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</select>
+
+	<!-- 单个查询 -->
+	<select id="selectByPk" parameterType="java.lang.Long" resultType="com.tpay.user.model.SysUser">
+		select <include refid="Base_Column_List" /> from sys_user
+		where id_ = #{id,jdbcType=BIGINT} AND enable_ = 1
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="selectAll" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from sys_user where enable_ = 1
+	</select>
+
+
+	<select id="selectByParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from sys_user
+		<where>
+			<if test="userName != null">
+				AND USER_NAME=#{userName,jdbcType=VARCHAR}
+			</if>
+			<if test="loginName != null">
+				AND LOGIN_NAME=#{loginName,jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				AND PASSWORD=#{password,jdbcType=VARCHAR}
+			</if>
+			<if test="salt != null">
+				AND SALT=#{salt,jdbcType=VARCHAR}
+			</if>
+			<if test="realName != null">
+				AND REAL_NAME=#{realName,jdbcType=VARCHAR}
+			</if>
+			<if test="avatar != null">
+				AND AVATAR=#{avatar,jdbcType=VARCHAR}
+			</if>
+			<if test="registerType != null">
+				AND REGISTER_TYPE=#{registerType,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				AND USER_TYPE=#{userType,jdbcType=VARCHAR}
+			</if>
+			<if test="phone != null">
+				AND PHONE=#{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="email != null">
+				AND EMAIL=#{email,jdbcType=VARCHAR}
+			</if>
+			<if test="sex != null">
+				AND SEX=#{sex,jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				AND LOCKED_=#{locked,jdbcType=INTEGER}
+			</if>
+			<if test="loginNum != null">
+				AND LOGIN_NUM=#{loginNum,jdbcType=INTEGER}
+			</if>
+			<if test="loginTime != null">
+				AND LOGIN_TIME=#{loginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="oldLoginTime != null">
+				AND OLD_LOGIN_TIME=#{oldLoginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="loginIp != null">
+				AND LOGIN_IP=#{loginIp,jdbcType=VARCHAR}
+			</if>
+			<if test="oldLoginIp != null">
+				AND OLD_LOGIN_IP=#{oldLoginIp,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				AND STATUS_=#{status,jdbcType=VARCHAR}
+			</if>
+			<if test="enable != null">
+				AND ENABLE_=#{enable,jdbcType=INTEGER}
+			</if>
+			<if test="remark != null">
+				AND REMARK_=#{remark,jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				AND CREATE_BY=#{createBy,jdbcType=BIGINT}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME=#{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				AND UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+			</if>
+			<if test="updateTime != null">
+				AND UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+			</if>
+
+		</where>
+		<if test="orderColumn != null">
+			order by ${orderColumn}
+			<if test="orderType != null">
+				${orderType}
+			</if>
+		</if>
+	</select>
+
+	<select id="selectIdPage" resultType="java.lang.Long">
+		select id_ from sys_user
+		<where>
+			<if test="userName != null">
+				AND USER_NAME=#{userName,jdbcType=VARCHAR}
+			</if>
+			<if test="loginName != null">
+				AND LOGIN_NAME=#{loginName,jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				AND PASSWORD=#{password,jdbcType=VARCHAR}
+			</if>
+			<if test="salt != null">
+				AND SALT=#{salt,jdbcType=VARCHAR}
+			</if>
+			<if test="realName != null">
+				AND REAL_NAME=#{realName,jdbcType=VARCHAR}
+			</if>
+			<if test="avatar != null">
+				AND AVATAR=#{avatar,jdbcType=VARCHAR}
+			</if>
+			<if test="registerType != null">
+				AND REGISTER_TYPE=#{registerType,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				AND USER_TYPE=#{userType,jdbcType=VARCHAR}
+			</if>
+			<if test="phone != null">
+				AND PHONE=#{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="email != null">
+				AND EMAIL=#{email,jdbcType=VARCHAR}
+			</if>
+			<if test="sex != null">
+				AND SEX=#{sex,jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				AND LOCKED_=#{locked,jdbcType=INTEGER}
+			</if>
+			<if test="loginNum != null">
+				AND LOGIN_NUM=#{loginNum,jdbcType=INTEGER}
+			</if>
+			<if test="loginTime != null">
+				AND LOGIN_TIME=#{loginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="oldLoginTime != null">
+				AND OLD_LOGIN_TIME=#{oldLoginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="loginIp != null">
+				AND LOGIN_IP=#{loginIp,jdbcType=VARCHAR}
+			</if>
+			<if test="oldLoginIp != null">
+				AND OLD_LOGIN_IP=#{oldLoginIp,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				AND STATUS_=#{status,jdbcType=VARCHAR}
+			</if>
+			<if test="enable != null">
+				AND ENABLE_=#{enable,jdbcType=INTEGER}
+			</if>
+			<if test="remark != null">
+				AND REMARK_=#{remark,jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				AND CREATE_BY=#{createBy,jdbcType=BIGINT}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME=#{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				AND UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+			</if>
+			<if test="updateTime != null">
+				AND UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</select>
+</mapper>

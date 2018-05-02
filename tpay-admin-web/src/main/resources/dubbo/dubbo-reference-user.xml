@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 声明远程服务接口 -->
+    <dubbo:reference id="sysUserService"
+                     interface="com.tpay.user.service.SysUserService" check="false" version="1.0.0"/>
+
+
+    <dubbo:reference id="sysAuthorizeService"
+                     interface="com.tpay.user.service.SysAuthorizeService" check="false" version="1.0.0"/>
+
+    <dubbo:reference id="sysMenuService"
+                     interface="com.tpay.user.service.SysMenuService" check="false" version="1.0.0"/>
+
+    <dubbo:reference id="sysRoleService"
+                     interface="com.tpay.user.service.SysRoleService" check="false" version="1.0.0"/>
+
+    <dubbo:reference id="sysRoleMenuService"
+                     interface="com.tpay.user.service.SysRoleMenuService" check="false" version="1.0.0"/>
+
+    <dubbo:reference id="mchInfoService"
+                     interface="com.tpay.user.service.MchInfoService" check="false" version="1.0.0"/>
+
+</beans>

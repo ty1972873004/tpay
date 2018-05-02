@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tpay.order.mapper.PayOrderMapper">
+  <resultMap id="BaseResultMap" type="com.tpay.order.model.PayOrder">
+    <id column="ID_" jdbcType="BIGINT" property="id" />
+    <result column="PAY_ORDER_NO" jdbcType="VARCHAR" property="payOrderNo" />
+    <result column="ORDER_TYPE" jdbcType="VARCHAR" property="orderType" />
+    <result column="MCH_ID" jdbcType="BIGINT" property="mchId" />
+    <result column="MCH_ORDER_NO" jdbcType="VARCHAR" property="mchOrderNo" />
+    <result column="PAY_CHANNEL" jdbcType="VARCHAR" property="payChannel" />
+    <result column="AMOUNT_" jdbcType="DECIMAL" property="amount" />
+    <result column="CURRENCY" jdbcType="VARCHAR" property="currency" />
+    <result column="PAY_STATUS" jdbcType="VARCHAR" property="payStatus" />
+    <result column="CLIENT_IP" jdbcType="VARCHAR" property="clientIp" />
+    <result column="DEVICE_INFO" jdbcType="VARCHAR" property="deviceInfo" />
+    <result column="SUBJECT_" jdbcType="VARCHAR" property="subject" />
+    <result column="BODY_" jdbcType="VARCHAR" property="body" />
+    <result column="EXTRA_" jdbcType="VARCHAR" property="extra" />
+    <result column="CHANNEL_MCH_ID" jdbcType="VARCHAR" property="channelMchId" />
+    <result column="CHANNEL_ORDER_NO" jdbcType="VARCHAR" property="channelOrderNo" />
+    <result column="ERR_CODE" jdbcType="VARCHAR" property="errCode" />
+    <result column="ERR_MSG" jdbcType="VARCHAR" property="errMsg" />
+    <result column="NOTIFY_URL" jdbcType="VARCHAR" property="notifyUrl" />
+    <result column="NOTIFY_COUNT" jdbcType="INTEGER" property="notifyCount" />
+    <result column="LAST_NOTIFY_TIME" jdbcType="TIMESTAMP" property="lastNotifyTime" />
+    <result column="EXPIRE_TIME" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="PAY_SUCCESS_TIME" jdbcType="TIMESTAMP" property="paySuccessTime" />
+    <result column="ENABLE_" jdbcType="INTEGER" property="enable" />
+    <result column="REMARK_" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_BY" jdbcType="BIGINT" property="createBy" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_BY" jdbcType="BIGINT" property="updateBy" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+
+  </resultMap>
+  
+  <!-- 基本列 -->
+  <sql id="Base_Column_List">
+    ID_,PAY_ORDER_NO,ORDER_TYPE,MCH_ID,MCH_ORDER_NO,PAY_CHANNEL,AMOUNT_,CURRENCY,PAY_STATUS,CLIENT_IP,DEVICE_INFO,SUBJECT_,BODY_,EXTRA_,CHANNEL_MCH_ID,CHANNEL_ORDER_NO,ERR_CODE,ERR_MSG,NOTIFY_URL,NOTIFY_COUNT,LAST_NOTIFY_TIME,EXPIRE_TIME,PAY_SUCCESS_TIME,ENABLE_,REMARK_,CREATE_BY,CREATE_TIME,UPDATE_BY,UPDATE_TIME
+  </sql>
+  
+  <!-- 单个插入 -->
+  <insert id="insert" parameterType="com.tpay.order.model.PayOrder" useGeneratedKeys="true" keyProperty="id">
+    insert into pay_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="payOrderNo != null">
+        PAY_ORDER_NO,
+      </if>
+      <if test="orderType != null">
+        ORDER_TYPE,
+      </if>
+      <if test="mchId != null">
+        MCH_ID,
+      </if>
+      <if test="mchOrderNo != null">
+        MCH_ORDER_NO,
+      </if>
+      <if test="payChannel != null">
+        PAY_CHANNEL,
+      </if>
+      <if test="amount != null">
+        AMOUNT_,
+      </if>
+      <if test="currency != null">
+        CURRENCY,
+      </if>
+      <if test="payStatus != null">
+        PAY_STATUS,
+      </if>
+      <if test="clientIp != null">
+        CLIENT_IP,
+      </if>
+      <if test="deviceInfo != null">
+        DEVICE_INFO,
+      </if>
+      <if test="subject != null">
+        SUBJECT_,
+      </if>
+      <if test="body != null">
+        BODY_,
+      </if>
+      <if test="extra != null">
+        EXTRA_,
+      </if>
+      <if test="channelMchId != null">
+        CHANNEL_MCH_ID,
+      </if>
+      <if test="channelOrderNo != null">
+        CHANNEL_ORDER_NO,
+      </if>
+      <if test="errCode != null">
+        ERR_CODE,
+      </if>
+      <if test="errMsg != null">
+        ERR_MSG,
+      </if>
+      <if test="notifyUrl != null">
+        NOTIFY_URL,
+      </if>
+      <if test="notifyCount != null">
+        NOTIFY_COUNT,
+      </if>
+      <if test="lastNotifyTime != null">
+        LAST_NOTIFY_TIME,
+      </if>
+      <if test="expireTime != null">
+        EXPIRE_TIME,
+      </if>
+      <if test="paySuccessTime != null">
+        PAY_SUCCESS_TIME,
+      </if>
+      <if test="enable != null">
+        ENABLE_,
+      </if>
+      <if test="remark != null">
+        REMARK_,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="payOrderNo != null">
+        #{payOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null">
+        #{mchId,jdbcType=BIGINT},
+      </if>
+      <if test="mchOrderNo != null">
+        #{mchOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null">
+        #{payChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null">
+        #{clientIp,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceInfo != null">
+        #{deviceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null">
+        #{body,jdbcType=VARCHAR},
+      </if>
+      <if test="extra != null">
+        #{extra,jdbcType=VARCHAR},
+      </if>
+      <if test="channelMchId != null">
+        #{channelMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="channelOrderNo != null">
+        #{channelOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null">
+        #{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null">
+        #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyCount != null">
+        #{notifyCount,jdbcType=INTEGER},
+      </if>
+      <if test="lastNotifyTime != null">
+        #{lastNotifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paySuccessTime != null">
+        #{paySuccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+
+    </trim>
+  </insert>
+  
+  <!-- 批量新增 -->
+  <insert id="insertBatch" parameterType="java.util.List">
+    INSERT INTO pay_order
+    (ID_,PAY_ORDER_NO,ORDER_TYPE,MCH_ID,MCH_ORDER_NO,PAY_CHANNEL,AMOUNT_,CURRENCY,PAY_STATUS,CLIENT_IP,DEVICE_INFO,SUBJECT_,BODY_,EXTRA_,CHANNEL_MCH_ID,CHANNEL_ORDER_NO,ERR_CODE,ERR_MSG,NOTIFY_URL,NOTIFY_COUNT,LAST_NOTIFY_TIME,EXPIRE_TIME,PAY_SUCCESS_TIME,ENABLE_,REMARK_,CREATE_BY,CREATE_TIME,UPDATE_BY)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.id,jdbcType=BIGINT},#{item.payOrderNo,jdbcType=VARCHAR},#{item.orderType,jdbcType=VARCHAR},#{item.mchId,jdbcType=BIGINT},#{item.mchOrderNo,jdbcType=VARCHAR},#{item.payChannel,jdbcType=BIGINT},#{item.amount,jdbcType=DECIMAL},#{item.currency,jdbcType=VARCHAR},#{item.payStatus,jdbcType=VARCHAR},#{item.clientIp,jdbcType=VARCHAR},#{item.deviceInfo,jdbcType=VARCHAR},#{item.subject,jdbcType=VARCHAR},#{item.body,jdbcType=VARCHAR},#{item.extra,jdbcType=VARCHAR},#{item.channelMchId,jdbcType=VARCHAR},#{item.channelOrderNo,jdbcType=VARCHAR},#{item.errCode,jdbcType=VARCHAR},#{item.errMsg,jdbcType=VARCHAR},#{item.notifyUrl,jdbcType=VARCHAR},#{item.notifyCount,jdbcType=INTEGER},#{item.lastNotifyTime,jdbcType=TIMESTAMP},#{item.expireTime,jdbcType=TIMESTAMP},#{item.paySuccessTime,jdbcType=TIMESTAMP},#{item.enable,jdbcType=INTEGER},#{item.remark,jdbcType=VARCHAR},#{item.createBy,jdbcType=BIGINT},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateBy,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  
+  <!-- 单个更新 -->
+  <update id="update" parameterType="com.tpay.order.model.PayOrder">
+    update pay_order
+    <set>
+      <if test="payOrderNo != null">
+        PAY_ORDER_NO=#{payOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        ORDER_TYPE=#{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null">
+        MCH_ID=#{mchId,jdbcType=BIGINT},
+      </if>
+      <if test="mchOrderNo != null">
+        MCH_ORDER_NO=#{mchOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null">
+        PAY_CHANNEL=#{payChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT_=#{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null">
+        CURRENCY=#{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null">
+        PAY_STATUS=#{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null">
+        CLIENT_IP=#{clientIp,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceInfo != null">
+        DEVICE_INFO=#{deviceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        SUBJECT_=#{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null">
+        BODY_=#{body,jdbcType=VARCHAR},
+      </if>
+      <if test="extra != null">
+        EXTRA_=#{extra,jdbcType=VARCHAR},
+      </if>
+      <if test="channelMchId != null">
+        CHANNEL_MCH_ID=#{channelMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="channelOrderNo != null">
+        CHANNEL_ORDER_NO=#{channelOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        ERR_CODE=#{errCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null">
+        ERR_MSG=#{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null">
+        NOTIFY_URL=#{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyCount != null">
+        NOTIFY_COUNT=#{notifyCount,jdbcType=INTEGER},
+      </if>
+      <if test="lastNotifyTime != null">
+        LAST_NOTIFY_TIME=#{lastNotifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        EXPIRE_TIME=#{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paySuccessTime != null">
+        PAY_SUCCESS_TIME=#{paySuccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enable != null">
+        ENABLE_=#{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK_=#{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY=#{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME=#{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY=#{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+      </if>
+
+    </set>
+    where id_ = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 批量更新 -->
+  <update id="updateBatch" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+        UPDATE pay_order
+        <set>
+        <if test="item.payOrderNo != null">
+          PAY_ORDER_NO=#{item.payOrderNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.orderType != null">
+          ORDER_TYPE=#{item.orderType,jdbcType=VARCHAR},
+        </if>
+        <if test="item.mchId != null">
+          MCH_ID=#{item.mchId,jdbcType=BIGINT},
+        </if>
+        <if test="item.mchOrderNo != null">
+          MCH_ORDER_NO=#{item.mchOrderNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.payChannel != null">
+          PAY_CHANNEL=#{item.payChannel,jdbcType=VARCHAR},
+        </if>
+        <if test="item.amount != null">
+          AMOUNT_=#{item.amount,jdbcType=DECIMAL},
+        </if>
+        <if test="item.currency != null">
+          CURRENCY=#{item.currency,jdbcType=VARCHAR},
+        </if>
+        <if test="item.payStatus != null">
+          PAY_STATUS=#{item.payStatus,jdbcType=VARCHAR},
+        </if>
+        <if test="item.clientIp != null">
+          CLIENT_IP=#{item.clientIp,jdbcType=VARCHAR},
+        </if>
+        <if test="item.deviceInfo != null">
+          DEVICE_INFO=#{item.deviceInfo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.subject != null">
+          SUBJECT_=#{item.subject,jdbcType=VARCHAR},
+        </if>
+        <if test="item.body != null">
+          BODY_=#{item.body,jdbcType=VARCHAR},
+        </if>
+        <if test="item.extra != null">
+          EXTRA_=#{item.extra,jdbcType=VARCHAR},
+        </if>
+        <if test="item.channelMchId != null">
+          CHANNEL_MCH_ID=#{item.channelMchId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.channelOrderNo != null">
+          CHANNEL_ORDER_NO=#{item.channelOrderNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.errCode != null">
+          ERR_CODE=#{item.errCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.errMsg != null">
+          ERR_MSG=#{item.errMsg,jdbcType=VARCHAR},
+        </if>
+        <if test="item.notifyUrl != null">
+          NOTIFY_URL=#{item.notifyUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="item.notifyCount != null">
+          NOTIFY_COUNT=#{item.notifyCount,jdbcType=INTEGER},
+        </if>
+        <if test="item.lastNotifyTime != null">
+          LAST_NOTIFY_TIME=#{item.lastNotifyTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.expireTime != null">
+          EXPIRE_TIME=#{item.expireTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.paySuccessTime != null">
+          PAY_SUCCESS_TIME=#{item.paySuccessTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.enable != null">
+          ENABLE_=#{item.enable,jdbcType=INTEGER},
+        </if>
+        <if test="item.remark != null">
+          REMARK_=#{item.remark,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createBy != null">
+          CREATE_BY=#{item.createBy,jdbcType=BIGINT},
+        </if>
+        <if test="item.createTime != null">
+          CREATE_TIME=#{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateBy != null">
+          UPDATE_BY=#{item.updateBy,jdbcType=BIGINT},
+        </if>
+        <if test="item.updateTime != null">
+          UPDATE_TIME=#{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+
+        </set>
+        WHERE id_ = #{item.id,jdbcType=BIGINT}
+    </foreach> 
+  </update>
+
+  <update id="updateByParam" parameterType="java.util.Map">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update  pay_order
+            <set>
+        <if test="payOrderNo != null">
+        PAY_ORDER_NO=#{payOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        ORDER_TYPE=#{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null">
+        MCH_ID=#{mchId,jdbcType=BIGINT},
+      </if>
+      <if test="mchOrderNo != null">
+        MCH_ORDER_NO=#{mchOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null">
+        PAY_CHANNEL=#{payChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT_=#{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null">
+        CURRENCY=#{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null">
+        PAY_STATUS=#{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="clientIp != null">
+        CLIENT_IP=#{clientIp,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceInfo != null">
+        DEVICE_INFO=#{deviceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        SUBJECT_=#{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null">
+        BODY_=#{body,jdbcType=VARCHAR},
+      </if>
+      <if test="extra != null">
+        EXTRA_=#{extra,jdbcType=VARCHAR},
+      </if>
+      <if test="channelMchId != null">
+        CHANNEL_MCH_ID=#{channelMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="channelOrderNo != null">
+        CHANNEL_ORDER_NO=#{channelOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        ERR_CODE=#{errCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errMsg != null">
+        ERR_MSG=#{errMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null">
+        NOTIFY_URL=#{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyCount != null">
+        NOTIFY_COUNT=#{notifyCount,jdbcType=INTEGER},
+      </if>
+      <if test="lastNotifyTime != null">
+        LAST_NOTIFY_TIME=#{lastNotifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        EXPIRE_TIME=#{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paySuccessTime != null">
+        PAY_SUCCESS_TIME=#{paySuccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enable != null">
+        ENABLE_=#{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK_=#{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY=#{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME=#{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY=#{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+      </if>
+
+            </set>
+            where id_ = #{id,jdbcType=BIGINT}
+        </foreach>
+  </update>
+
+  <!-- 删除 -->
+  <update id="deleteByPk" parameterType="com.tpay.order.model.PayOrder" >
+      update pay_order
+      set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+      where id_ = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="deleteByParam" parameterType="com.tpay.order.model.PayOrder" >
+        update pay_order
+        set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+        where id_ = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 批量删除 -->
+  <update id="deleteBatch" parameterType="java.util.List" >
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+        update pay_order
+        set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+        where id_ = #{item.id,jdbcType=BIGINT}
+    </foreach> 
+  </update>
+
+
+  <!-- COUNT -->
+  <select id="count" resultType="java.lang.Integer">
+        SELECT count(*) FROM pay_order where enable_ = 1
+  </select>
+
+  <select id="countByParam" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) from pay_order
+        <where>
+            <if test="payOrderNo != null">
+                and PAY_ORDER_NO=#{payOrderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="orderType != null">
+                and ORDER_TYPE=#{orderType,jdbcType=VARCHAR}
+            </if>
+            <if test="mchId != null">
+                and MCH_ID=#{mchId,jdbcType=BIGINT}
+            </if>
+            <if test="mchOrderNo != null">
+                and MCH_ORDER_NO=#{mchOrderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="payChannel != null">
+                and PAY_CHANNEL=#{payChannel,jdbcType=VARCHAR}
+            </if>
+            <if test="amount != null">
+                and AMOUNT_=#{amount,jdbcType=DECIMAL}
+            </if>
+            <if test="currency != null">
+                and CURRENCY=#{currency,jdbcType=VARCHAR}
+            </if>
+            <if test="payStatus != null">
+                and PAY_STATUS=#{payStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="clientIp != null">
+                and  CLIENT_IP=#{clientIp,jdbcType=VARCHAR}
+            </if>
+            <if test="deviceInfo != null">
+                and  DEVICE_INFO=#{deviceInfo,jdbcType=VARCHAR}
+            </if>
+            <if test="subject != null">
+                and  SUBJECT_=#{subject,jdbcType=VARCHAR}
+            </if>
+            <if test="body != null">
+                and BODY_=#{body,jdbcType=VARCHAR}
+            </if>
+            <if test="extra != null">
+                and  EXTRA_=#{extra,jdbcType=VARCHAR}
+            </if>
+            <if test="channelMchId != null">
+                and  CHANNEL_MCH_ID=#{channelMchId,jdbcType=VARCHAR}
+            </if>
+            <if test="channelOrderNo != null">
+                and   CHANNEL_ORDER_NO=#{channelOrderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="errCode != null">
+                and   ERR_CODE=#{errCode,jdbcType=VARCHAR}
+            </if>
+            <if test="errMsg != null">
+                and ERR_MSG=#{errMsg,jdbcType=VARCHAR}
+            </if>
+            <if test="notifyUrl != null">
+                and  NOTIFY_URL=#{notifyUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="notifyCount != null">
+                and NOTIFY_COUNT=#{notifyCount,jdbcType=INTEGER}
+            </if>
+            <if test="lastNotifyTime != null">
+                and  LAST_NOTIFY_TIME=#{lastNotifyTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="expireTime != null">
+                and  EXPIRE_TIME=#{expireTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="paySuccessTime != null">
+                and   PAY_SUCCESS_TIME=#{paySuccessTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="enable != null">
+                and ENABLE_=#{enable,jdbcType=INTEGER}
+            </if>
+        </where>
+  </select>
+
+  <!-- 单个查询 -->
+  <select id="selectByPk" parameterType="java.lang.Long" resultType="com.tpay.order.model.PayOrder">
+        select <include refid="Base_Column_List" /> from pay_order
+        where id_ = #{item.id,jdbcType=BIGINT} AND enable_ = 1
+  </select>
+
+  <!-- 查询所有 -->
+  <select id="selectAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from pay_order where enable_ = 1
+  </select>
+
+
+  <select id="selectByParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from pay_order
+        <where>
+            <if test="payOrderNo != null">
+                and PAY_ORDER_NO=#{payOrderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="orderType != null">
+                and ORDER_TYPE=#{orderType,jdbcType=VARCHAR}
+            </if>
+            <if test="mchId != null">
+                and MCH_ID=#{mchId,jdbcType=BIGINT}
+            </if>
+            <if test="mchOrderNo != null">
+                and MCH_ORDER_NO=#{mchOrderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="payChannel != null">
+                and PAY_CHANNEL=#{payChannel,jdbcType=VARCHAR}
+            </if>
+            <if test="amount != null">
+                and AMOUNT_=#{amount,jdbcType=DECIMAL}
+            </if>
+            <if test="currency != null">
+                and CURRENCY=#{currency,jdbcType=VARCHAR}
+            </if>
+            <if test="payStatus != null">
+                and PAY_STATUS=#{payStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="clientIp != null">
+                and  CLIENT_IP=#{clientIp,jdbcType=VARCHAR}
+            </if>
+            <if test="deviceInfo != null">
+                and  DEVICE_INFO=#{deviceInfo,jdbcType=VARCHAR}
+            </if>
+            <if test="subject != null">
+                and  SUBJECT_=#{subject,jdbcType=VARCHAR}
+            </if>
+            <if test="body != null">
+                and BODY_=#{body,jdbcType=VARCHAR}
+            </if>
+            <if test="extra != null">
+                and  EXTRA_=#{extra,jdbcType=VARCHAR}
+            </if>
+            <if test="channelMchId != null">
+                and  CHANNEL_MCH_ID=#{channelMchId,jdbcType=VARCHAR}
+            </if>
+            <if test="channelOrderNo != null">
+                and   CHANNEL_ORDER_NO=#{channelOrderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="errCode != null">
+                and   ERR_CODE=#{errCode,jdbcType=VARCHAR}
+            </if>
+            <if test="errMsg != null">
+                and ERR_MSG=#{errMsg,jdbcType=VARCHAR}
+            </if>
+            <if test="notifyUrl != null">
+                and  NOTIFY_URL=#{notifyUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="notifyCount != null">
+                and NOTIFY_COUNT=#{notifyCount,jdbcType=INTEGER}
+            </if>
+            <if test="lastNotifyTime != null">
+                and  LAST_NOTIFY_TIME=#{lastNotifyTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="expireTime != null">
+                and  EXPIRE_TIME=#{expireTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="paySuccessTime != null">
+                and   PAY_SUCCESS_TIME=#{paySuccessTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="enable != null">
+                and ENABLE_=#{enable,jdbcType=INTEGER}
+            </if>
+        </where>
+        <if test="orderColumn != null">
+            order by ${orderColumn}
+            <if test="orderType != null">
+              ${orderType}
+            </if>
+        </if>
+  </select>
+
+    <select id="selectIdPage" resultType="java.lang.Long">
+       select id_ from pay_order
+       <where>
+      <if test="payOrderNo != null">
+         and PAY_ORDER_NO=#{payOrderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="orderType != null">
+         and ORDER_TYPE=#{orderType,jdbcType=VARCHAR}
+      </if>
+      <if test="mchId != null">
+          and MCH_ID=#{mchId,jdbcType=BIGINT}
+      </if>
+      <if test="mchOrderNo != null">
+          and MCH_ORDER_NO=#{mchOrderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="payChannel != null">
+          and PAY_CHANNEL=#{payChannel,jdbcType=VARCHAR}
+      </if>
+      <if test="amount != null">
+          and AMOUNT_=#{amount,jdbcType=DECIMAL}
+      </if>
+      <if test="currency != null">
+          and CURRENCY=#{currency,jdbcType=VARCHAR}
+      </if>
+      <if test="payStatus != null">
+          and PAY_STATUS=#{payStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="clientIp != null">
+          and  CLIENT_IP=#{clientIp,jdbcType=VARCHAR}
+      </if>
+      <if test="deviceInfo != null">
+          and  DEVICE_INFO=#{deviceInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="subject != null">
+          and  SUBJECT_=#{subject,jdbcType=VARCHAR}
+      </if>
+      <if test="body != null">
+          and BODY_=#{body,jdbcType=VARCHAR}
+      </if>
+      <if test="extra != null">
+          and  EXTRA_=#{extra,jdbcType=VARCHAR}
+      </if>
+      <if test="channelMchId != null">
+          and  CHANNEL_MCH_ID=#{channelMchId,jdbcType=VARCHAR}
+      </if>
+      <if test="channelOrderNo != null">
+          and   CHANNEL_ORDER_NO=#{channelOrderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="errCode != null">
+          and   ERR_CODE=#{errCode,jdbcType=VARCHAR}
+      </if>
+      <if test="errMsg != null">
+          and ERR_MSG=#{errMsg,jdbcType=VARCHAR}
+      </if>
+      <if test="notifyUrl != null">
+          and  NOTIFY_URL=#{notifyUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="notifyCount != null">
+          and NOTIFY_COUNT=#{notifyCount,jdbcType=INTEGER}
+      </if>
+      <if test="lastNotifyTime != null">
+          and  LAST_NOTIFY_TIME=#{lastNotifyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="expireTime != null">
+          and  EXPIRE_TIME=#{expireTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="paySuccessTime != null">
+          and   PAY_SUCCESS_TIME=#{paySuccessTime,jdbcType=TIMESTAMP}
+      </if>
+       <if test="enable != null">
+           and ENABLE_=#{enable,jdbcType=INTEGER}
+       </if>
+      </where>
+    </select>
+
+    <select id="selectByOrderNo" parameterType="java.lang.String" resultType="com.tpay.order.model.PayOrder">
+        select <include refid="Base_Column_List" /> from pay_order
+        where pay_order_no = #{item.payOrderNo,jdbcType=VARCHAR} AND enable_ = 1
+    </select>
+
+
+</mapper>

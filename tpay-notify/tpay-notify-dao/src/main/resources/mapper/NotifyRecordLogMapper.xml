@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tpay.notify.mapper.NotifyRecordLogMapper">
+  <resultMap id="BaseResultMap" type="com.tpay.notify.model.NotifyRecordLog">
+    <id column="ID_" jdbcType="BIGINT" property="id" />
+    <result column="NOTIFY_ID" jdbcType="BIGINT" property="notifyId" />
+    <result column="REQUEST_" jdbcType="VARCHAR" property="request" />
+    <result column="RESPONSE_" jdbcType="VARCHAR" property="response" />
+    <result column="CUST_NO" jdbcType="VARCHAR" property="custNo" />
+    <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+    <result column="HTTP_STATUS" jdbcType="INTEGER" property="httpStatus" />
+    <result column="ENABLE_" jdbcType="INTEGER" property="enable" />
+    <result column="REMARK_" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_BY" jdbcType="BIGINT" property="createBy" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="BIGINT" property="updateBy" />
+
+  </resultMap>
+
+  <!-- 基本列 -->
+  <sql id="Base_Column_List">
+    ID_,NOTIFY_ID,REQUEST_,RESPONSE_,CUST_NO,ORDER_NO,HTTP_STATUS,ENABLE_,REMARK_,CREATE_TIME,CREATE_BY,UPDATE_TIME,UPDATE_BY
+  </sql>
+
+  <!-- 单个插入 -->
+  <insert id="insert" parameterType="com.tpay.notify.model.NotifyRecordLog" useGeneratedKeys="true" keyProperty="id">
+    insert into notify_record_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="notifyId != null">
+        NOTIFY_ID,
+      </if>
+      <if test="request != null">
+        REQUEST_,
+      </if>
+      <if test="response != null">
+        RESPONSE_,
+      </if>
+      <if test="custNo != null">
+        CUST_NO,
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO,
+      </if>
+      <if test="httpStatus != null">
+        HTTP_STATUS,
+      </if>
+      <if test="enable != null">
+        ENABLE_,
+      </if>
+      <if test="remark != null">
+        REMARK_,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+        <if test="updateBy != null">
+            UPDATE_BY,
+        </if>
+        <if test="updateTime != null">
+            UPDATE_TIME,
+        </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="notifyId != null">
+        #{notifyId,jdbcType=BIGINT},
+      </if>
+      <if test="request != null">
+        #{request,jdbcType=VARCHAR},
+      </if>
+      <if test="response != null">
+        #{response,jdbcType=VARCHAR},
+      </if>
+      <if test="custNo != null">
+        #{custNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="httpStatus != null">
+        #{httpStatus,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+        <if test="updateBy != null">
+            #{updateBy,jdbcType=BIGINT},
+        </if>
+        <if test="updateTime != null">
+            #{updateTime,jdbcType=TIMESTAMP},
+        </if>
+    </trim>
+  </insert>
+
+  <!-- 批量新增 -->
+  <insert id="insertBatch" parameterType="java.util.List">
+    INSERT INTO notify_record_log
+    (ID_,NOTIFY_ID,REQUEST_,RESPONSE_,CUST_NO,ORDER_NO,HTTP_STATUS,ENABLE_,REMARK_,CREATE_TIME,CREATE_BY)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.id,jdbcType=BIGINT},#{item.notifyId,jdbcType=BIGINT},#{item.request,jdbcType=VARCHAR},#{item.response,jdbcType=VARCHAR},#{item.custNo,jdbcType=VARCHAR},#{item.orderNo,jdbcType=VARCHAR},#{item.httpStatus,jdbcType=INTEGER},#{item.enable,jdbcType=INTEGER},#{item.remark,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.createBy,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+
+  <!-- 单个更新 -->
+  <update id="update" parameterType="com.tpay.notify.model.NotifyRecordLog">
+    update notify_record_log
+    <set>
+      <if test="notifyId != null">
+        NOTIFY_ID=#{notifyId,jdbcType=BIGINT},
+      </if>
+      <if test="request != null">
+        REQUEST_=#{request,jdbcType=VARCHAR},
+      </if>
+      <if test="response != null">
+        RESPONSE_=#{response,jdbcType=VARCHAR},
+      </if>
+      <if test="custNo != null">
+        CUST_NO=#{custNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO=#{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="httpStatus != null">
+        HTTP_STATUS=#{httpStatus,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        ENABLE_=#{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK_=#{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY=#{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY=#{updateBy,jdbcType=BIGINT},
+      </if>
+
+    </set>
+    where id_ = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 批量更新 -->
+  <update id="updateBatch" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        UPDATE notify_record_log
+        <set>
+        <if test="item.notifyId != null">
+          NOTIFY_ID=#{item.notifyId,jdbcType=BIGINT},
+        </if>
+        <if test="item.request != null">
+          REQUEST_=#{item.request,jdbcType=VARCHAR},
+        </if>
+        <if test="item.response != null">
+          RESPONSE_=#{item.response,jdbcType=VARCHAR},
+        </if>
+        <if test="item.custNo != null">
+          CUST_NO=#{item.custNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.orderNo != null">
+          ORDER_NO=#{item.orderNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.httpStatus != null">
+          HTTP_STATUS=#{item.httpStatus,jdbcType=INTEGER},
+        </if>
+        <if test="item.enable != null">
+          ENABLE_=#{item.enable,jdbcType=INTEGER},
+        </if>
+        <if test="item.remark != null">
+          REMARK_=#{item.remark,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createBy != null">
+          CREATE_BY=#{item.createBy,jdbcType=BIGINT},
+        </if>
+        <if test="item.updateTime != null">
+          UPDATE_TIME=#{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateBy != null">
+          UPDATE_BY=#{item.updateBy,jdbcType=BIGINT},
+        </if>
+
+        </set>
+        WHERE id_ = #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+
+  <update id="updateByParam" parameterType="java.util.Map">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update  notify_record_log
+            <set>
+        <if test="notifyId != null">
+        NOTIFY_ID=#{notifyId,jdbcType=BIGINT},
+      </if>
+      <if test="request != null">
+        REQUEST_=#{request,jdbcType=VARCHAR},
+      </if>
+      <if test="response != null">
+        RESPONSE_=#{response,jdbcType=VARCHAR},
+      </if>
+      <if test="custNo != null">
+        CUST_NO=#{custNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO=#{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="httpStatus != null">
+        HTTP_STATUS=#{httpStatus,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        ENABLE_=#{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK_=#{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        CREATE_BY=#{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY=#{updateBy,jdbcType=BIGINT},
+      </if>
+
+            </set>
+            where id_ = #{id,jdbcType=BIGINT}
+        </foreach>
+  </update>
+
+  <!-- 删除 -->
+  <update id="deleteByPk" parameterType="com.tpay.notify.model.NotifyRecordLog" >
+      update notify_record_log
+      set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+      where id_ = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="deleteByParam" parameterType="com.tpay.notify.model.NotifyRecordLog" >
+        update notify_record_log
+        set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+        where id_ = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 批量删除 -->
+  <update id="deleteBatch" parameterType="java.util.List" >
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update notify_record_log
+        set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+        where id_ = #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+
+
+  <!-- COUNT -->
+  <select id="count" resultType="java.lang.Integer">
+        SELECT count(*) FROM notify_record_log where enable_ = 1
+  </select>
+
+  <select id="countByParam" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) from notify_record_log
+        <where>
+              <if test="notifyId != null">
+         and NOTIFY_ID=#{notifyId,jdbcType=BIGINT}
+      </if>
+      <if test="request != null">
+         and REQUEST_=#{request,jdbcType=VARCHAR}
+      </if>
+      <if test="response != null">
+         and RESPONSE_=#{response,jdbcType=VARCHAR}
+      </if>
+      <if test="custNo != null">
+         and CUST_NO=#{custNo,jdbcType=VARCHAR}
+      </if>
+      <if test="orderNo != null">
+         and ORDER_NO=#{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="httpStatus != null">
+         and HTTP_STATUS=#{httpStatus,jdbcType=INTEGER}
+      </if>
+      <if test="enable != null">
+         and ENABLE_=#{enable,jdbcType=INTEGER}
+      </if>
+      <if test="remark != null">
+         and REMARK_=#{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="createBy != null">
+         and CREATE_BY=#{createBy,jdbcType=BIGINT}
+      </if>
+      <if test="updateTime != null">
+         and UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateBy != null">
+         and UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+      </if>
+
+        </where>
+  </select>
+
+  <!-- 单个查询 -->
+  <select id="selectByPk" parameterType="java.lang.Long" resultType="com.tpay.notify.model.NotifyRecordLog">
+        select <include refid="Base_Column_List" /> from notify_record_log
+        where id_ = #{item.id,jdbcType=BIGINT} AND enable_ = 1
+  </select>
+
+  <!-- 查询所有 -->
+  <select id="selectAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from notify_record_log where enable_ = 1
+  </select>
+
+
+  <select id="selectByParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from notify_record_log
+        <where>
+      <if test="notifyId != null">
+         and NOTIFY_ID=#{notifyId,jdbcType=BIGINT}
+      </if>
+      <if test="request != null">
+         and REQUEST_=#{request,jdbcType=VARCHAR}
+      </if>
+      <if test="response != null">
+         and RESPONSE_=#{response,jdbcType=VARCHAR}
+      </if>
+      <if test="custNo != null">
+         and CUST_NO=#{custNo,jdbcType=VARCHAR}
+      </if>
+      <if test="orderNo != null">
+         and ORDER_NO=#{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="httpStatus != null">
+         and HTTP_STATUS=#{httpStatus,jdbcType=INTEGER}
+      </if>
+      <if test="enable != null">
+         and ENABLE_=#{enable,jdbcType=INTEGER}
+      </if>
+      <if test="remark != null">
+         and REMARK_=#{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="createBy != null">
+         and CREATE_BY=#{createBy,jdbcType=BIGINT}
+      </if>
+      <if test="updateTime != null">
+         and UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateBy != null">
+         and UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+      </if>
+
+        </where>
+        <if test="orderColumn != null">
+            order by
+            <if test="orderType != null">
+
+            </if>
+        </if>
+  </select>
+
+    <select id="selectIdPage" resultType="java.lang.Long">
+        select id_ from notify_record_log
+        <where>
+      <if test="notifyId != null">
+         and NOTIFY_ID=#{notifyId,jdbcType=BIGINT}
+      </if>
+      <if test="request != null">
+         and REQUEST_=#{request,jdbcType=VARCHAR}
+      </if>
+      <if test="response != null">
+         and RESPONSE_=#{response,jdbcType=VARCHAR}
+      </if>
+      <if test="custNo != null">
+         and CUST_NO=#{custNo,jdbcType=VARCHAR}
+      </if>
+      <if test="orderNo != null">
+         and ORDER_NO=#{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="httpStatus != null">
+         and HTTP_STATUS=#{httpStatus,jdbcType=INTEGER}
+      </if>
+      <if test="enable != null">
+         and ENABLE_=#{enable,jdbcType=INTEGER}
+      </if>
+      <if test="remark != null">
+         and REMARK_=#{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="createBy != null">
+         and CREATE_BY=#{createBy,jdbcType=BIGINT}
+      </if>
+      <if test="updateTime != null">
+         and UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateBy != null">
+         and UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+      </if>
+
+        </where>
+    </select>
+
+
+</mapper>

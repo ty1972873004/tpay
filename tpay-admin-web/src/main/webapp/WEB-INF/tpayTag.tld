@@ -1,0 +1,61 @@
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+		version="2.1">
+	<tlib-version>5.0</tlib-version>
+	<short-name>myTag</short-name>
+	<uri>http://hi.csdn.net/tjcyjd/tags</uri>
+	<!-- 日期时间标签 -->
+	<tag>
+		<!-- 标签名 -->
+		<name>dateTime</name>
+		<!-- 对应的标签处理类 -->
+		<tag-class>com.tpay.common.utils.tag.DateTimeTag</tag-class>
+		<!-- 标签主体的类型 -->
+		<body-content>empty</body-content>
+		
+		<attribute>
+			<!-- 属性名 -->
+			<name>strDateTime</name>
+			<!-- 该属性是否为必要的 -->
+			<required>false</required>
+			<!-- 属性值是否可以在JSP运行时期动态产生 -->
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<!-- 属性名 -->
+			<name>type</name>
+			<!-- 该属性是否为必要的 -->
+			<required>false</required>
+			<!-- 属性值是否可以在JSP运行时期动态产生 -->
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<!-- 属性名 -->
+			<name>oldType</name>
+			<!-- 该属性是否为必要的 -->
+			<required>false</required>
+			<!-- 属性值是否可以在JSP运行时期动态产生 -->
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+	</tag>
+
+	<!-- 金额标签 -->
+	<tag>
+		<!-- 标签名 -->
+		<name>money</name>
+		<!-- 对应的标签处理类 -->
+		<tag-class>com.tpay.common.utils.tag.MoneyTag</tag-class>
+		<!-- 标签主体的类型 -->
+		<body-content>empty</body-content>
+		<attribute>
+			<!-- 属性名 -->
+			<name>money</name>
+			<!-- 该属性是否为必要的 -->
+			<required>false</required>
+			<!-- 属性值是否可以在JSP运行时期动态产生 -->
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

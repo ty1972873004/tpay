@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tpay.sys.mapper.SysDicMapper">
+  <resultMap id="BaseResultMap" type="com.tpay.sys.model.SysDic">
+    <id column="ID_" jdbcType="BIGINT" property="id" />
+    <result column="INDEX_ID" jdbcType="BIGINT" property="indexId" />
+    <result column="CODE_" jdbcType="VARCHAR" property="code" />
+    <result column="CODE_TEXT" jdbcType="VARCHAR" property="codeText" />
+    <result column="SORT_NO" jdbcType="INTEGER" property="sortNo" />
+    <result column="EDITABLE_" jdbcType="INTEGER" property="editable" />
+    <result column="ENABLE_" jdbcType="INTEGER" property="enable" />
+    <result column="REMARK_" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_BY" jdbcType="BIGINT" property="createBy" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_BY" jdbcType="BIGINT" property="updateBy" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+
+  </resultMap>
+  
+  <!-- 基本列 -->
+  <sql id="Base_Column_List">
+    ID_,INDEX_ID,CODE_,CODE_TEXT,SORT_NO,EDITABLE_,ENABLE_,REMARK_,CREATE_BY,CREATE_TIME,UPDATE_BY,UPDATE_TIME
+  </sql>
+  
+  <!-- 单个插入 -->
+  <insert id="insert" parameterType="com.tpay.sys.model.SysDic" useGeneratedKeys="true" keyProperty="id">
+    insert into sys_dic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="indexId != null">
+        INDEX_ID,
+      </if>
+      <if test="code != null">
+        CODE_,
+      </if>
+      <if test="codeText != null">
+        CODE_TEXT,
+      </if>
+      <if test="sortNo != null">
+        SORT_NO,
+      </if>
+      <if test="editable != null">
+        EDITABLE_,
+      </if>
+      <if test="enable != null">
+        ENABLE_,
+      </if>
+      <if test="remark != null">
+        REMARK_,
+      </if>
+      <if test="createBy != null">
+        CREATE_BY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateBy != null">
+          UPDATE_BY,
+      </if>
+      <if test="updateTime != null">
+          UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="indexId != null">
+        #{indexId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="codeText != null">
+        #{codeText,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="editable != null">
+        #{editable,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+            #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+            #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+
+    </trim>
+  </insert>
+  
+  <!-- 批量新增 -->
+  <insert id="insertBatch" parameterType="java.util.List">
+    INSERT INTO sys_dic
+    (ID_,INDEX_ID,CODE_,CODE_TEXT,SORT_NO,EDITABLE_,ENABLE_,REMARK_,CREATE_BY,CREATE_TIME)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.id,jdbcType=BIGINT},#{item.indexId,jdbcType=BIGINT},#{item.code,jdbcType=VARCHAR},#{item.codeText,jdbcType=VARCHAR},#{item.sortNo,jdbcType=INTEGER},#{item.editable,jdbcType=INTEGER},#{item.enable,jdbcType=INTEGER},#{item.remark,jdbcType=VARCHAR},#{item.createBy,jdbcType=BIGINT},#{item.createTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  
+  <!-- 单个更新 -->
+  <update id="update" parameterType="com.tpay.sys.model.SysDic">
+    update sys_dic
+    <set>
+      <if test="indexId != null">
+        INDEX_ID=#{indexId,jdbcType=BIGINT}, 
+      </if>
+      <if test="code != null">
+        CODE_=#{code,jdbcType=VARCHAR}, 
+      </if>
+      <if test="codeText != null">
+        CODE_TEXT=#{codeText,jdbcType=VARCHAR}, 
+      </if>
+      <if test="sortNo != null">
+        SORT_NO=#{sortNo,jdbcType=INTEGER}, 
+      </if>
+      <if test="editable != null">
+        EDITABLE_=#{editable,jdbcType=INTEGER}, 
+      </if>
+      <if test="enable != null">
+        ENABLE_=#{enable,jdbcType=INTEGER}, 
+      </if>
+      <if test="remark != null">
+        REMARK_=#{remark,jdbcType=VARCHAR}, 
+      </if>
+      <if test="createBy != null">
+        CREATE_BY=#{createBy,jdbcType=BIGINT}, 
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY=#{updateBy,jdbcType=BIGINT}, 
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}, 
+      </if>
+
+    </set>
+    where id_ = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 批量更新 -->
+  <update id="updateBatch" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+        UPDATE sys_dic
+        <set>
+        <if test="item.indexId != null">
+          INDEX_ID=#{item.indexId,jdbcType=BIGINT},
+        </if>
+        <if test="item.code != null">
+          CODE_=#{item.code,jdbcType=VARCHAR},
+        </if>
+        <if test="item.codeText != null">
+          CODE_TEXT=#{item.codeText,jdbcType=VARCHAR},
+        </if>
+        <if test="item.sortNo != null">
+          SORT_NO=#{item.sortNo,jdbcType=INTEGER},
+        </if>
+        <if test="item.editable != null">
+          EDITABLE_=#{item.editable,jdbcType=INTEGER},
+        </if>
+        <if test="item.enable != null">
+          ENABLE_=#{item.enable,jdbcType=INTEGER},
+        </if>
+        <if test="item.remark != null">
+          REMARK_=#{item.remark,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createBy != null">
+          CREATE_BY=#{item.createBy,jdbcType=BIGINT},
+        </if>
+        <if test="item.updateBy != null">
+          UPDATE_BY=#{item.updateBy,jdbcType=BIGINT},
+        </if>
+        <if test="item.updateTime != null">
+          UPDATE_TIME=#{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+
+        </set>
+        WHERE id_ = #{item.id,jdbcType=BIGINT}
+    </foreach> 
+  </update>
+
+  <update id="updateByParam" parameterType="java.util.Map">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update  sys_dic
+            <set>
+        <if test="indexId != null">
+        INDEX_ID=#{indexId,jdbcType=BIGINT}, 
+      </if>
+      <if test="code != null">
+        CODE_=#{code,jdbcType=VARCHAR}, 
+      </if>
+      <if test="codeText != null">
+        CODE_TEXT=#{codeText,jdbcType=VARCHAR}, 
+      </if>
+      <if test="sortNo != null">
+        SORT_NO=#{sortNo,jdbcType=INTEGER}, 
+      </if>
+      <if test="editable != null">
+        EDITABLE_=#{editable,jdbcType=INTEGER}, 
+      </if>
+      <if test="enable != null">
+        ENABLE_=#{enable,jdbcType=INTEGER}, 
+      </if>
+      <if test="remark != null">
+        REMARK_=#{remark,jdbcType=VARCHAR}, 
+      </if>
+      <if test="createBy != null">
+        CREATE_BY=#{createBy,jdbcType=BIGINT}, 
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY=#{updateBy,jdbcType=BIGINT}, 
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}, 
+      </if>
+
+            </set>
+            where id_ = #{id,jdbcType=BIGINT}
+        </foreach>
+  </update>
+
+  <!-- 删除 -->
+  <update id="deleteByPk" parameterType="com.tpay.sys.model.SysDic" >
+      update sys_dic
+      set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+      where id_ = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="deleteByParam" parameterType="com.tpay.sys.model.SysDic" >
+        update sys_dic
+        set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+        where id_ = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 批量删除 -->
+  <update id="deleteBatch" parameterType="java.util.List" >
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
+        update sys_dic
+        set update_time = #{updateTime,jdbcType=TIMESTAMP},update_by = #{updateBy,jdbcType=VARCHAR}, enable_ = 0
+        where id_ = #{item.id,jdbcType=BIGINT}
+    </foreach> 
+  </update>
+
+
+  <!-- COUNT -->
+  <select id="count" resultType="java.lang.Integer">
+        SELECT count(*) FROM sys_dic where enable_ = 1
+  </select>
+
+  <select id="countByParam" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) from sys_dic
+        <where>
+              <if test="indexId != null">
+         and INDEX_ID=#{indexId,jdbcType=BIGINT}
+      </if>
+      <if test="code != null">
+         and CODE_=#{code,jdbcType=VARCHAR}
+      </if>
+      <if test="codeText != null">
+         and CODE_TEXT=#{codeText,jdbcType=VARCHAR}
+      </if>
+      <if test="sortNo != null">
+         and SORT_NO=#{sortNo,jdbcType=INTEGER}
+      </if>
+      <if test="editable != null">
+         and EDITABLE_=#{editable,jdbcType=INTEGER}
+      </if>
+      <if test="enable != null">
+         and ENABLE_=#{enable,jdbcType=INTEGER}
+      </if>
+      <if test="remark != null">
+         and REMARK_=#{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="createBy != null">
+         and CREATE_BY=#{createBy,jdbcType=BIGINT}
+      </if>
+      <if test="updateBy != null">
+         and UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+      </if>
+      <if test="updateTime != null">
+         and UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+      </if>
+
+        </where>
+  </select>
+
+  <!-- 单个查询 -->
+  <select id="selectByPk" parameterType="java.lang.Long" resultType="com.tpay.sys.model.SysDic">
+        select <include refid="Base_Column_List" /> from sys_dic
+        where id_ = #{item.id,jdbcType=BIGINT} AND enable_ = 1
+  </select>
+
+  <!-- 查询所有 -->
+  <select id="selectAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from sys_dic where enable_ = 1
+  </select>
+
+
+  <select id="selectByParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from sys_dic
+        <where>
+      <if test="indexId != null">
+         and INDEX_ID=#{indexId,jdbcType=BIGINT}
+      </if>
+      <if test="code != null">
+         and CODE_=#{code,jdbcType=VARCHAR}
+      </if>
+      <if test="codeText != null">
+         and CODE_TEXT=#{codeText,jdbcType=VARCHAR}
+      </if>
+      <if test="sortNo != null">
+         and SORT_NO=#{sortNo,jdbcType=INTEGER}
+      </if>
+      <if test="editable != null">
+         and EDITABLE_=#{editable,jdbcType=INTEGER}
+      </if>
+      <if test="enable != null">
+         and ENABLE_=#{enable,jdbcType=INTEGER}
+      </if>
+      <if test="remark != null">
+         and REMARK_=#{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="createBy != null">
+         and CREATE_BY=#{createBy,jdbcType=BIGINT}
+      </if>
+      <if test="updateBy != null">
+         and UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+      </if>
+      <if test="updateTime != null">
+         and UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+      </if>
+
+        </where>
+        <if test="orderColumn != null">
+            order by ${orderColumn}
+            <if test="orderType != null">
+                ${orderType}
+            </if>
+        </if>
+  </select>
+
+    <select id="selectIdPage" resultType="java.lang.Long">
+        select id_ from sys_dic
+        <where>
+      <if test="indexId != null">
+         and INDEX_ID=#{indexId,jdbcType=BIGINT}
+      </if>
+      <if test="code != null">
+         and CODE_=#{code,jdbcType=VARCHAR}
+      </if>
+      <if test="codeText != null">
+         and CODE_TEXT=#{codeText,jdbcType=VARCHAR}
+      </if>
+      <if test="sortNo != null">
+         and SORT_NO=#{sortNo,jdbcType=INTEGER}
+      </if>
+      <if test="editable != null">
+         and EDITABLE_=#{editable,jdbcType=INTEGER}
+      </if>
+      <if test="enable != null">
+         and ENABLE_=#{enable,jdbcType=INTEGER}
+      </if>
+      <if test="remark != null">
+         and REMARK_=#{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="createBy != null">
+         and CREATE_BY=#{createBy,jdbcType=BIGINT}
+      </if>
+      <if test="updateBy != null">
+         and UPDATE_BY=#{updateBy,jdbcType=BIGINT}
+      </if>
+      <if test="updateTime != null">
+         and UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+      </if>
+
+        </where>
+    </select>
+
+
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="${app.name}"  />
+
+    <!-- 使用redis中心暴露发现服务地址-->
+    <dubbo:registry  protocol="zookeeper" address="${dubbo.address}"  check="false" file="${dubbo.cache.dir}/dubbo-${app.name}.cache" />
+
+    <dubbo:consumer check="false" />
+
+    <!-- 当ProtocolConfig和ServiceConfig某属性没有配置时,采用此缺省值 -->
+    <dubbo:provider timeout="${dubbo.timeout}" threadpool="fixed"  accepts="1000"  />
+
+    <!--通讯配置-->
+    <dubbo:protocol name="dubbo"  dispatcher="message" threadpool="fixed" threads="${dubbo.protocol.threads}" port="${dubbo.protocol.port}" />
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service  retries="0" interface="com.tpay.sys.service.SysDicService" ref="sysDicService"  version="1.0.0"/>
+    <dubbo:service  retries="0" interface="com.tpay.sys.service.SysDicIndexService" ref="sysDicIndexService"  version="1.0.0"/>
+    <dubbo:service  retries="3" interface="com.tpay.sys.service.SequenceService" ref="sequenceService"  version="1.0.0"/>
+
+</beans>
