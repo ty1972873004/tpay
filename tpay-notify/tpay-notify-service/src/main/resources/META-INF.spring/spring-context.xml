@@ -23,10 +23,4 @@
 	<!-- 启动时初始化Spring上下文环境工具类 -->
 	<bean id="springContextUtil" class="com.tpay.common.utils.SpringContextUtil"></bean>
 
-	<import resource="classpath:spring/spring-dataSource.xml" />
-	<import resource="classpath:spring/spring-mybatis.xml" />
-	<import resource="classpath:spring/spring-redis.xml" />
-	<import resource="classpath:spring/spring-dubbo-provider.xml" />
-	<import resource="classpath:spring/spring-idwork.xml" />
-	<import resource="classpath:spring/spring-activemq.xml"/>
 </beans>
