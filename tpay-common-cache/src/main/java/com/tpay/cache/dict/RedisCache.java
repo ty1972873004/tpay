@@ -24,7 +24,6 @@ import java.util.Set;
  * @desc 缓存对象 redis实现
  */
 @SuppressWarnings("rawtypes")
-@Component
 public class RedisCache implements ICacheForDict<Dict> {
 
 	private JedisClient jedisClient;
