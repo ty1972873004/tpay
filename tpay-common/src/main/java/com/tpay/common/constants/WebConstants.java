@@ -25,4 +25,10 @@ public class WebConstants {
     public final static int ACCOUNT_IS_LOCKED = 10005;
 
     public final static int BAD_REQUEST = 10006;
+
+    public final static String HANDLE_SUCCESS = "SUCCESS";
+
+    public final static String HANDLE_FAIL = "FAIL";
+
+    public final static int CHECK_FAIL = 20001;
 }

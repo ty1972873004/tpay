@@ -26,6 +26,11 @@ public class Constants {
     /** 当前用户 */
     public static final String CURRENT_USER = "CURRENT_USER";
 
+    /**   返回key **/
+    public static final String CODE = "code";
 
+    public static final String MSG = "msg";
+
+    public static final String DATA = "data";
 
 }

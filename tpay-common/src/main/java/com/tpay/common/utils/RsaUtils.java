@@ -20,6 +20,8 @@ import java.util.Map;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author tuyong
@@ -28,6 +30,9 @@ import org.apache.commons.lang.StringUtils;
  * @create 2018-04-18 14:19
  **/
 public class RsaUtils {
+
+    private static Logger logger = LoggerFactory.getLogger(RsaUtils.class);
+
     private static final String SIGN_TYPE_RSA = "RSA";
 
     private static final String SIGN_TYPE_RSA2 = "RSA2";
@@ -90,7 +95,6 @@ public class RsaUtils {
     public static boolean rsaCheck(Map map, String sign) throws Exception {
         java.security.Signature signature = null;
         String signType = map.get("sign_type").toString();
-        String privateKey = map.get("privateKey").toString();
         String content = map.get("content").toString();
         String publicKey = map.get("publicKey").toString();
         System.out.println(">>验证的签名为:" + sign);

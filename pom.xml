@@ -21,6 +21,7 @@
         <module>tpay-sys</module>
         <module>tpay-mq</module>
         <module>tpay-notify</module>
+        <module>tpay-open-web</module>
     </modules>
     <packaging>pom</packaging>
 
