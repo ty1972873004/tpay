@@ -142,7 +142,7 @@ public class TestController {
         req.setOrderName("测试JSAPI订单");
         req.setClientIp("127.0.0.1");
         req.setOpenId("o9JDMwoWgzcrBirYVf_MEG9X0gtM");
-        Map<String, String> map = wechatPayService.doWechatJsAPI(req);
+        Map<String, Object> map = wechatPayService.doWechatJsAPI(req);
         return map;
     }
 
@@ -158,7 +158,7 @@ public class TestController {
         req.setOrderMoney(new BigDecimal(0.01));
         req.setOrderName("测试APP订单");
         req.setClientIp("127.0.0.1");
-        Map<String, String> map = wechatPayService.doWechatAppAPI(req);
+        Map<String, Object> map = wechatPayService.doWechatAppAPI(req);
         return map;
     }
 
@@ -177,7 +177,7 @@ public class TestController {
         Map<String,Object> extra = InstanceUtil.newHashMap();
         extra.put("productId",orderNo);
         req.setExtra(JSONObject.fromObject(extra).toString());
-        Map<String, String> map = wechatPayService.doWechatNativeAPI(req);
+        Map<String, Object> map = wechatPayService.doWechatNativeAPI(req);
         return map;
     }
 
@@ -197,7 +197,7 @@ public class TestController {
         extra.put("sceneInfo","{\"h5_info\": {\"type\":\"Wap\",\"wap_url\": \"https://pay.qq.com\",\"wap_name\": \"腾讯充值\"}}");
         req.setExtra(JSONObject.fromObject(extra).toString());
         logger.info("请求参数{}",req);
-        Map<String, String> map = wechatPayService.doWechatH5API(req);
+        Map<String, Object> map = wechatPayService.doWechatH5API(req);
         return map;
     }
 

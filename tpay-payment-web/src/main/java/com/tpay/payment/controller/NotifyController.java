@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,7 +35,7 @@ import io.swagger.annotations.Api;
  * @desc 异步回调通知
  * @create 2018-04-10 9:51
  **/
-@RestController
+@Controller
 @Api(value = "支付回调", description = "支付回调")
 public class NotifyController extends BaseController{
 
@@ -75,6 +76,7 @@ public class NotifyController extends BaseController{
      * @throws Exception
      */
     @RequestMapping(value = "/weixinAction/asyRequestForWechat", method = RequestMethod.POST)
+    @ResponseBody
     public void asyRequestForWechat(HttpServletRequest request,HttpServletResponse response) throws Exception{
         String succResult = "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
         String failResult = "<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[验签失败]]></return_msg></xml>";

@@ -19,10 +19,10 @@
                     {
                         "appId": "wx5eb4a9e67862aa84",
                         "timeStamp": "1414411784",
-                        "nonceStr": "HNaH6xKUt3LHHV37",
-                        "package": "prepay_id=wx12141139009353df8bdee5d41367055429",
+                        "nonceStr": "pNwRTYG3szUUMq0n",
+                        "package": "prepay_id=wx080948379414578bb02312111377115967",
                         "signType": "MD5",
-                        "paySign": "E65AC2E05D10C1BE62731464BFB0E171"
+                        "paySign": "D41AA31811649D08B565576817E21470"
                     },
             function(res){
                 WeixinJSBridge.log(res.err_msg);

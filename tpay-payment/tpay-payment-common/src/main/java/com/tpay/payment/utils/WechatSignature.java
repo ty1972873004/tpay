@@ -43,8 +43,8 @@ public class WechatSignature {
         Map<String,String> map = InstanceUtil.newHashMap();
         map.put("appId","wx5eb4a9e67862aa84");
         map.put("timeStamp","1414411784");
-        map.put("nonceStr","HNaH6xKUt3LHHV37");
-        map.put("package","prepay_id=wx12141139009353df8bdee5d41367055429");
+        map.put("nonceStr","pNwRTYG3szUUMq0n");
+        map.put("package","prepay_id=wx080948379414578bb02312111377115967");
         map.put("signType","MD5");
          System.out.println(getSign(map,"3sdrew32432de34r445434353535fr43"));
 

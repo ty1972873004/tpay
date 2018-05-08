@@ -109,7 +109,7 @@ public class OrderService {
         return payParam;
     }
 
-    public String doWxPay(PayOrder payOrder){
+    public Map<String,Object> doWxPay(PayOrder payOrder){
         ThirdPayReq thirdPayReq = new ThirdPayReq();
         thirdPayReq.setMchId(payOrder.getMchId());
         thirdPayReq.setClientIp(payOrder.getClientIp());
@@ -118,7 +118,7 @@ public class OrderService {
         thirdPayReq.setOrderDesc(payOrder.getBody());
         thirdPayReq.setChannelId(payOrder.getPayChannel());
 
-        Map<String,String> resultMap = InstanceUtil.newHashMap();
+        Map<String,Object> resultMap = InstanceUtil.newHashMap();
         Map<String,Object> extra = InstanceUtil.newHashMap();
         String payParam = null;
         switch (payOrder.getPayChannel()){
@@ -146,7 +146,7 @@ public class OrderService {
 
 
         }
-        return null;
+        return resultMap;
     }
 
 }

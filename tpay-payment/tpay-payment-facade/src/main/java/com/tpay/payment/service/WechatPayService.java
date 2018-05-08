@@ -19,7 +19,7 @@ public interface WechatPayService {
      * @return
      * @throws PayException
      */
-    Map<String, String> doWechatJsAPI(ThirdPayReq pay) throws PayException;
+    Map<String, Object> doWechatJsAPI(ThirdPayReq pay) throws PayException;
 
     /**
      * APP支付
@@ -27,7 +27,7 @@ public interface WechatPayService {
      * @return
      * @throws PayException
      */
-    Map<String, String> doWechatAppAPI(ThirdPayReq pay) throws PayException;
+    Map<String, Object> doWechatAppAPI(ThirdPayReq pay) throws PayException;
 
     /**
      * 扫码支付
@@ -35,7 +35,7 @@ public interface WechatPayService {
      * @return
      * @throws PayException
      */
-    Map<String, String> doWechatNativeAPI(ThirdPayReq pay) throws PayException;
+    Map<String, Object> doWechatNativeAPI(ThirdPayReq pay) throws PayException;
 
 
     /**
@@ -44,5 +44,5 @@ public interface WechatPayService {
      * @return
      * @throws PayException
      */
-    Map<String, String> doWechatH5API(ThirdPayReq pay) throws PayException;
+    Map<String, Object> doWechatH5API(ThirdPayReq pay) throws PayException;
 }

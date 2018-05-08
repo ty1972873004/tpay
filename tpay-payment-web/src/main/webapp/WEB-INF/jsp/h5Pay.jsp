@@ -11,6 +11,7 @@
     <title>支付回调</title>
 </head>
 <body>
-<input type="button" value="支付" onclick="location='https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx16095848975872394d7bc9332481576906&package=1486391517&redirect_url=http%3a%2f%2fwww.javaframework.cn'">
+<input type="button" value="支付" onclick="
+location='https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx08150331632662b6c29bb8f62903237814&package=1569927566&redirect_url=http%3a%2f%2fwww.javaframework.cn'"/>
 </body>
 </html>
