@@ -16,6 +16,7 @@
     安全框架 Shiro
 
 项目结构
+```
 tpay
 ├── tpay-common -- 公共模块
 ├── tpay-common-cache -- 缓存模块
@@ -52,7 +53,7 @@ tpay
 ├── tpay-admin-web --商户管理系统
 ├── tpay-payment-web --支付回调web
 ├── tpay-open-web --开放接口web
-
+```
 项目打包命令
 clean package -Dmaven.test.skip=true
 
