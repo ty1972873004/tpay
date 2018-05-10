@@ -8,6 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -57,8 +59,14 @@ public class TpayUtils {
         return resultMap;
     }
 
-    public static boolean verifySign(Map<String,Object> params,String sign) throws Exception{
+    public static boolean verifySign(Map<String,String> params,String sign) throws Exception{
         return RsaUtils.rsaCheck(params,sign);
+    }
+
+    public static String getSignMapKeys(Map<String,String> signMap){
+        List<String> keys = new ArrayList<String>(signMap.keySet());
+        String signKey = StringUtils.join(keys,",");
+        return signKey;
     }
 
 }

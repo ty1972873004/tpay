@@ -22,4 +22,7 @@
     <dubbo:reference id="sysRoleMenuService"
                      interface="com.tpay.user.service.SysRoleMenuService" check="false" version="1.0.0"/>
 
+
+    <dubbo:reference id="mchInfoService"
+                     interface="com.tpay.user.service.MchInfoService" check="false" version="1.0.0"/>
 </beans>

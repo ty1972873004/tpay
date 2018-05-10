@@ -1,6 +1,8 @@
 package com.tpay.open.service;
 
 import com.tpay.common.utils.InstanceUtil;
+import com.tpay.common.utils.RsaUtils;
+import com.tpay.common.utils.TpayUtils;
 import com.tpay.order.model.PayChannel;
 import com.tpay.order.model.PayOrder;
 import com.tpay.order.service.PayChannelService;
@@ -11,9 +13,9 @@ import com.tpay.payment.service.AliPayService;
 import com.tpay.payment.service.WechatPayService;
 import com.tpay.sys.constants.SequenceConstants;
 import com.tpay.sys.service.SequenceService;
-
+import com.tpay.user.model.MchInfo;
+import com.tpay.user.service.MchInfoService;
 import net.sf.json.JSONObject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +46,23 @@ public class OrderService {
     @Autowired
     private WechatPayService wechatPayService;
 
+    @Autowired
+    private MchInfoService mchInfoService;
+
+    public boolean verifySign(Map<String,String> signMap,String sign) throws  Exception{
+        Long mchId = Long.valueOf((String)signMap.get("mchId"));
+
+        Map<String, Object> params = InstanceUtil.newHashMap();
+        params.put("mchId",mchId);
+        MchInfo mchInfo = mchInfoService.queryOne(params);
+        signMap.put("sign_param",TpayUtils.getSignMapKeys(signMap));
+        signMap.put("content",RsaUtils.getSignContent(signMap));
+        signMap.put("sign_type","RSA2");
+        signMap.put("publicKey",mchInfo.getMchPublicKey());
+        boolean verifyFlag = TpayUtils.verifySign(signMap,sign);
+        return  verifyFlag;
+    }
+
     public PayOrder createOrder(String mchId,String mchOrderNo,String channelId,String amount,String currency,String clientIp,String device,String notifyUrl,String subject,
                            String body,String extra,String remark){
 
@@ -73,7 +92,7 @@ public class OrderService {
         return payOrder;
     }
 
-    public String doAliPay(PayOrder payOrder){
+    public Map<String,Object>  doAliPay(PayOrder payOrder){
         ThirdPayReq thirdPayReq = new ThirdPayReq();
         thirdPayReq.setMchId(payOrder.getMchId());
         thirdPayReq.setClientIp(payOrder.getClientIp());
@@ -82,31 +101,26 @@ public class OrderService {
         thirdPayReq.setOrderDesc(payOrder.getBody());
         thirdPayReq.setChannelId(payOrder.getPayChannel());
         thirdPayReq.setExtra(payOrder.getExtra());
-
+        thirdPayReq.setOrderNo(payOrder.getPayOrderNo());
         Map<String,Object> resultMap = InstanceUtil.newHashMap();
-        String payParam = null;
         switch (payOrder.getPayChannel()){
             case PayConstants.PAY_CHANNEL_ALIPAY_MOBILE :
                 resultMap = aliPayService.doAlipayMobilePay(thirdPayReq);
-                payParam = (String) resultMap.get("payParam");
                 break;
             case PayConstants.PAY_CHANNEL_ALIPAY_PC :
                 resultMap = aliPayService.doAlipayPcPay(thirdPayReq);
-                payParam = (String) resultMap.get("payForm");
                 break;
             case PayConstants.PAY_CHANNEL_ALIPAY_QR :
                 resultMap = aliPayService.doAlipayQrPay(thirdPayReq);
-                payParam = (String) resultMap.get("qrUrl");
                 break;
             case PayConstants.PAY_CHANNEL_ALIPAY_WAP :
                 resultMap = aliPayService.doAlipayWapPay(thirdPayReq);
-                payParam = (String) resultMap.get("payUrl");
                 break;
             default:
                 resultMap = null;
                 break;
         }
-        return payParam;
+        return TpayUtils.setSuccessResultMap(null,resultMap);
     }
 
     public Map<String,Object> doWxPay(PayOrder payOrder){
@@ -117,6 +131,7 @@ public class OrderService {
         thirdPayReq.setOrderMoney(payOrder.getAmount());
         thirdPayReq.setOrderDesc(payOrder.getBody());
         thirdPayReq.setChannelId(payOrder.getPayChannel());
+        thirdPayReq.setOrderNo(payOrder.getPayOrderNo());
 
         Map<String,Object> resultMap = InstanceUtil.newHashMap();
         Map<String,Object> extra = InstanceUtil.newHashMap();
@@ -143,10 +158,13 @@ public class OrderService {
                 thirdPayReq.setExtra(JSONObject.fromObject(extra).toString());
                 resultMap = wechatPayService.doWechatNativeAPI(thirdPayReq);
                 break;
+            default:
+                resultMap = null;
+                break;
 
 
         }
-        return resultMap;
+        return TpayUtils.setSuccessResultMap("",resultMap);
     }
 
 }

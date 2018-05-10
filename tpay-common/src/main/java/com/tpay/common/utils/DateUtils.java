@@ -5,6 +5,8 @@ import com.tpay.common.exceptions.DataParseException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -906,6 +908,24 @@ public class DateUtils {
 
 	public static long getCurrentTimeStamp(){
 		return System.currentTimeMillis() ;
+	}
+
+	/**
+	 * parse Timestamp to String
+	 * @param ts
+	 * @return
+	 */
+	public static String parseToString(Timestamp ts){
+		String tsStr = "";
+		DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		try {
+			tsStr = sdf.format(ts);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return tsStr;
 	}
 
 }

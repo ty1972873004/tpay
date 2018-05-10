@@ -40,7 +40,7 @@ public class PayOrderController {
 
     @ApiOperation(value="统一下单接口")
     @PostMapping("/unifiedOrder")
-    public Object unifiedorder(ModelMap modelMap,
+    public Object unifiedOrder(ModelMap modelMap,
                                @ApiParam(required = true, value = "商户ID") @RequestParam(value = "mchId", required =  true) String mchId,
                                @ApiParam(required = true, value = "商户订单号") @RequestParam(value = "mchOrderNo", required =  true) String mchOrderNo,
                                @ApiParam(required = true, value = "渠道ID") @RequestParam(value = "channelId", required =  true) String channelId,
@@ -55,7 +55,7 @@ public class PayOrderController {
                                @ApiParam(required = true, value = "备注") @RequestParam(value = "remark", required =  true) String remark,
                                @ApiParam(required = true, value = "签名") @RequestParam(value = "sign", required =  true) String sign)  throws Exception{
 
-        Map<String,Object> signMap = InstanceUtil.newHashMap();
+        Map<String,String> signMap = InstanceUtil.newHashMap();
         signMap.put("mchId",mchId);
         signMap.put("mchOrderNo",mchOrderNo);
         signMap.put("channelId",channelId);
@@ -67,11 +67,18 @@ public class PayOrderController {
         signMap.put("subject",subject);
         signMap.put("body",body);
 
-        boolean verifyFlag = TpayUtils.verifySign(signMap,sign);
+
+        /**
+         * check sign
+         */
+        boolean verifyFlag = orderService.verifySign(signMap,sign);
         if(!verifyFlag){
-            return  TpayUtils.setResultMap(String.valueOf(WebConstants.CHECK_FAIL),"订单验签失败",null);
+            return  TpayUtils.setResultMap(String.valueOf(WebConstants.CHECK_FAIL),null,null);
         }
 
+        /**
+         * do create order
+         */
         PayOrder payOrder = orderService.createOrder(mchId,mchOrderNo,channelId,amount,currency,clientIp,device,notifyUrl,subject,body,extra,remark);
         if(StringUtils.isEmpty(payOrder.getTid())){
             return  TpayUtils.setFailResultMap("订单创建失败",null);

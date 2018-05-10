@@ -23,6 +23,8 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.apache.camel.component.xslt.XsltOutput.string;
+
 /**
  * @author tuyong
  * @version 1.0
@@ -198,14 +200,30 @@ public class RsaUtils {
         String BpublicKey ="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAup1Cu6efkqDNG4GYfN6sAZWpxBSNuo4ZwwgiBBFaKORtx/dU9GHUZwKJ+YYAQ8vletUUTfZki6goz8kRPZ0WwFrsNiNmHEy60Ip7s7DrU0/PHAYo2u/VPrj57iVoyckJSuPIQab7Ebtj1z+fDaLoNtwRwbQuALI5YaONByHxOE6sB8qCVn7k5nN/6e4EKmcJJwNCRti1hZsteJDNAPtz1nZBGP8qW8F2IqCebfoXfK+vBYqfBo2XbHrVDE1rSjig2uOzGaC19GHZzKI0sQ+c7qHO2pi82pNDIqHHOqIOm8pwBdmX0EDHI8RckSiR26r0TjGJNwN+JtgC197NvqD2+wIDAQAB";
 
 
-//        Map<String, String> map = InstanceUtil.newHashMap();
-//        map.put("sign_type","RSA2");
-//        map.put("privateKey",TprivateKey);
-//        map.put("charset","UTF-8");
-//        map.put("sign_param","name,sex");
-//        map.put("name","U232132132");
-//        map.put("sex","1");
-//         System.out.println(rsaSign(map));
+        Map<String, String> map = InstanceUtil.newHashMap();
+        map.put("sign_type","RSA2");
+        map.put("privateKey",BprivateKey);
+        map.put("charset","UTF-8");
+//        map.put("sign_param","mchId,payOrderNo");
+//        map.put("mchId","8000000000");
+//        map.put("payOrderNo","20180410171600098");
+
+        map.put("sign_param","mchId,mchOrderNo,channelId,amount,currency,clientIp,device,notifyUrl,subject,body");
+        map.put("mchId","8000000000");
+        map.put("mchOrderNo","20180410171600099");
+        map.put("channelId","WX_NATIVE");
+        map.put("amount","0.01");
+        map.put("currency","CNY");
+        map.put("clientIp","127.0.0.1");
+        map.put("device","PC");
+        map.put("notifyUrl","http://sys.javaxxw.cn/test/notify");
+        map.put("subject","测试商品标题");
+        map.put("body","测试商品描述");
+
+        System.out.println(rsaSign(map));
+
+
+
 //
 //        String sign = "aMySYtjh7ynCyWZoaB/PDyxI1P7idkmL9bVBwFkR3c2f4euCE3Do0dLMIzsr9mdJCKvd4CD4535oTUM4APJ9XzFB9r9Rd//uqBAmYyUqLYyCQoNUTZYJBJByalCTS7LfOkk3LC3sJREWvM1IwJTkF4qLiXdCB2d7tiZ1Bgohf4rqMhx5E+3nWOO7NVA/5nHtSrUTbPUbos5gZOSM7ljEQmbYs7by8b9PuZAdr5WWDH6suke1fnV9OzyMUoYr91gGqM8IlR2AMP1hG3g1HTRaO6mM44db0dkEdpWYA1U20caPwege5VMDdvw7PkaA9q7n0oCo85yUOo8XqD3ChANcFQ==";
 //
@@ -216,6 +234,6 @@ public class RsaUtils {
 //        map.put("content","name=U232132132&sex=1");
 //        map.put("publicKey",TpublicKey);
 //        System.out.println(rsaCheck(map,sign));
-         System.out.println(TpublicKey.length());
+//         System.out.println(TpublicKey.length());
     }
 }
