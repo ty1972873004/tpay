@@ -1,6 +1,7 @@
 package com.tpay.payment.controller;
 
 import com.tpay.base.controller.BaseController;
+import com.tpay.common.utils.DateUtils;
 import com.tpay.common.utils.PropertiesFileUtil;
 import com.tpay.notify.constants.MqConstants;
 import com.tpay.notify.enums.NotifyTypeEnum;
@@ -84,7 +85,7 @@ public class NotifyController extends BaseController{
         Map<String,Object> map = notifyPayService.doWechatPayNotify(params);
         if((int)map.get("code") == 1){
             PayOrder payOrder = (PayOrder)map.get("data");
-            String notifyUrl = BuildRequestUtils.buildThirdCallBackUrl(payOrder.getNotifyUrl(),"SUCCESS","OK",payOrder.getMchId().toString(),payOrder.getPayOrderNo(),payOrder.getPayStatus(),payOrder.getAmount().toString(),payOrder.getPaySuccessTime().toString(),"","");
+            String notifyUrl = BuildRequestUtils.buildThirdCallBackUrl(payOrder.getNotifyUrl(),"SUCCESS","OK",payOrder.getMchId().toString(),payOrder.getPayOrderNo(),payOrder.getPayStatus(),payOrder.getAmount().toString(), DateUtils.parseToString(payOrder.getPaySuccessTime()),"","");
             notifyRecordService.notifySend(notifyUrl,payOrder.getPayOrderNo(),payOrder.getMchId().toString(), NotifyTypeEnum.THIRD_CALL_BACK_NOTIFY.getValue(), PropertiesFileUtil.getInstance("system").get("third.callback"),"");
             response.getOutputStream().print(succResult);
         } else{

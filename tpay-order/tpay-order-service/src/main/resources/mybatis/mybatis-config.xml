@@ -8,6 +8,8 @@
 	</properties>
 	<!-- 配置全局属性 -->
 	<settings>
+		<!-- 打印查询语句 -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
 		<!-- 字段为空时仍调用model的set方法或map的put方法 -->
 		<setting name="callSettersOnNulls" value="true"/>
 		<!-- 使用列别名替换列名 默认:true -->

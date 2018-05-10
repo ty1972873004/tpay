@@ -4,6 +4,7 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradePrecreateRequest;
+import com.alipay.api.response.AlipayTradePrecreateResponse;
 import com.tpay.common.utils.InstanceUtil;
 import com.tpay.common.utils.SpringContextUtil;
 import com.tpay.payment.base.service.Base3rdPayService;
@@ -62,12 +63,12 @@ public class AliPayQrService extends Base3rdPayService {
         alipayRequest.setBizContent(jsonParam);
         alipayRequest.setNotifyUrl(alipayConfig.getNotify_url());
         alipayRequest.setReturnUrl(alipayConfig.getReturn_url());
-
+        AlipayTradePrecreateResponse response = new AlipayTradePrecreateResponse();
         String qrUrl = "";
         try {
             //调用SDK获取二维码地址
-            qrUrl = alipayClient.execute(alipayRequest).getBody();
-            resultMap.put("qrUrl", qrUrl);
+            response = alipayClient.execute(alipayRequest);
+            resultMap.put("qrUrl", response.getQrCode());
         } catch (AlipayApiException e) {
             logger.error("支付宝支付异常"+e);
         }

@@ -50,7 +50,7 @@ public class AliPayServiceImpl implements AliPayService {
         String payUrl = result.get("payUrl");
         logger.info("=====支付宝  H5支付    返回 ====={}",payUrl);
         resultMap.put("payUrl", payUrl);
-        resultMap.put("payOrderId", pay.getPtoId());
+        resultMap.put("payOrderNo", pay.getOrderNo());
         return resultMap;
     }
 
@@ -75,7 +75,7 @@ public class AliPayServiceImpl implements AliPayService {
         String payForm = result.get("payForm");
         logger.info("=====支付宝  PC支付    返回 ====={}",payForm);
         resultMap.put("payForm", payForm);
-        resultMap.put("payOrderId", pay.getPtoId());
+        resultMap.put("payOrderNo", pay.getOrderNo());
         return resultMap;
     }
 
@@ -100,7 +100,7 @@ public class AliPayServiceImpl implements AliPayService {
         String qrUrl = result.get("qrUrl");
         logger.info("=====支付宝  扫码支付    返回 ====={}",qrUrl);
         resultMap.put("qrUrl", qrUrl);
-        resultMap.put("payOrderId", pay.getPtoId());
+        resultMap.put("payOrderNo", pay.getOrderNo());
         return resultMap;
     }
 
@@ -125,7 +125,7 @@ public class AliPayServiceImpl implements AliPayService {
         String payParam = result.get("payParam");
         logger.info("=====支付宝  扫码支付    返回 ====={}",payParam);
         resultMap.put("payParam", payParam);
-        resultMap.put("payOrderId", pay.getPtoId());
+        resultMap.put("payOrderNo", pay.getOrderNo());
         return resultMap;
     }
 }

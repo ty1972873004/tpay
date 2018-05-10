@@ -117,7 +117,7 @@ public class TestController {
     public String alipayMobile(HttpServletResponse response,String orderNo)   {
         ThirdPayReq req = new ThirdPayReq();
         req.setChannelId("ALIPAY_MOBILE");
-        req.setMchId(1000001L);
+        req.setMchId(8000000000L);
         req.setOrderDesc("测试APP订单详情");
         req.setOrderNo(orderNo);
         req.setOrderMoney(new BigDecimal(1));

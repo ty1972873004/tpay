@@ -210,9 +210,9 @@ public class RsaUtils {
 
         map.put("sign_param","mchId,mchOrderNo,channelId,amount,currency,clientIp,device,notifyUrl,subject,body");
         map.put("mchId","8000000000");
-        map.put("mchOrderNo","20180410171600099");
-        map.put("channelId","WX_NATIVE");
-        map.put("amount","0.01");
+        map.put("mchOrderNo","20180410171600106");
+        map.put("channelId","ALIPAY_MOBILE");
+        map.put("amount","1");
         map.put("currency","CNY");
         map.put("clientIp","127.0.0.1");
         map.put("device","PC");

@@ -193,6 +193,7 @@ public class NotifyPayServiceImpl implements NotifyPayService {
 
         //获取订单信息
         PayOrder payOrder = payOrderMapper.selectByOrderNo(out_trade_no);
+
         if(payOrder == null) {
             logger.error("payOrder not found {}",out_trade_no);
             return false;

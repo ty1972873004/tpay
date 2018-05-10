@@ -9,6 +9,7 @@ import com.tpay.order.service.PayChannelService;
 import com.tpay.order.service.PayOrderService;
 import com.tpay.payment.constants.PayConstants;
 import com.tpay.payment.dto.ThirdPayReq;
+import com.tpay.payment.enums.PayStatusEnum;
 import com.tpay.payment.service.AliPayService;
 import com.tpay.payment.service.WechatPayService;
 import com.tpay.sys.constants.SequenceConstants;
@@ -87,6 +88,8 @@ public class OrderService {
         payOrder.setBody(body);
         payOrder.setExtra(extra);
         payOrder.setRemark(remark);
+        payOrder.setPayStatus(PayStatusEnum.PAY_INIT.getValue());
+        payOrder.setMchId(Long.valueOf(mchId));
 
         payOrder = payOrderService.insertOrUpdate(payOrder);
         return payOrder;
