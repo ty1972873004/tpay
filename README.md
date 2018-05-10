@@ -5,6 +5,7 @@
 
 
 项目使用框架
+```
     分布式服务框架 Dubbo
     分布式服务治理 Zookeeper
     基础框架 SpringMVC+Spring+Mybatis
@@ -14,7 +15,7 @@
     接口测试框架 Swagger2
     项目构建管理 Maven
     安全框架 Shiro
-
+```
 项目结构
 ```
 tpay
